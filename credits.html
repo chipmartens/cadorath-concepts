@@ -11,10 +11,13 @@
   h1 { font-size: 24px; font-weight: 600; margin: 0 0 16px; }
   p { color: #c4c7cc; margin: 0 0 14px; }
   a { color: #f2f2f0; }
+  .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px; padding: 10px 16px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; background: rgba(255,255,255,.06); color: #f2f2f0; text-decoration: none; font-size: 13px; font-weight: 600; }
+  .back:hover { background: rgba(255,255,255,.14); }
 </style>
 </head>
 <body>
 <main>
+  <a class="back" id="back" href="./">&larr; Back to the concepts</a>
   <h1>Credits</h1>
   <p>These are concept mockups for Cadorath, not a live Cadorath website. Forms and part searches use sample data and send nothing.</p>
   <p>Photography mixes Cadorath's own images with licensed stand-ins that a Cadorath photo shoot would replace.</p>
@@ -22,5 +25,9 @@
   <p>Other stand-ins are from Unsplash and Pexels under their licences, or public domain.</p>
   <p>Type: SF Pro (Apple, shown on Apple devices from the viewer's system) and Manrope (SIL Open Font License).</p>
 </main>
+<script>
+  // return to the concept the viewer came from
+  if (/^#concept-[123]$/.test(location.hash)) document.getElementById('back').href = './' + location.hash;
+</script>
 </body>
 </html>
