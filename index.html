@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Cadorath homepage concepts</title>
+<style>
+  :root {
+    --bg: #0d0e10;
+    --bar: rgba(16, 17, 20, 0.92);
+    --line: rgba(255, 255, 255, 0.12);
+    --text: #f2f2f0;
+    --muted: #9a9ea6;
+    --accent: #f2f2f0;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; padding-bottom: 132px; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    max-width: 1440px; margin: 0 auto; padding: 20px 16px 16px;
+    font-size: 13px; color: var(--muted);
+  }
+  header strong { color: var(--text); font-weight: 600; }
+
+  main { max-width: 1440px; margin: 0 auto; }
+  .mockup { display: none; }
+  .mockup.is-active { display: block; }
+  .mockup img { display: block; width: 100%; height: auto; }
+
+  footer {
+    max-width: 1440px; margin: 0 auto; padding: 28px 16px 8px;
+    font-size: 12px; line-height: 1.6; color: var(--muted);
+  }
+
+  nav.selector {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    background: var(--bar);
+    -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+    border-top: 1px solid var(--line);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+  .selector ol {
+    list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    max-width: 1440px; margin: 0 auto;
+  }
+  .selector button {
+    all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+    display: grid; grid-template-columns: 112px 1fr; gap: 14px; align-items: center;
+    padding: 8px; border-radius: 10px; border: 1px solid transparent;
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+  .selector button:hover { background: rgba(255, 255, 255, 0.05); }
+  .selector button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .selector button[aria-current="true"] { background: rgba(255, 255, 255, 0.08); border-color: var(--line); }
+  .selector img { width: 112px; height: 70px; object-fit: cover; border-radius: 6px; display: block; opacity: .7; transition: opacity .2s ease; }
+  .selector button[aria-current="true"] img, .selector button:hover img { opacity: 1; }
+  .selector .num { font-size: 12px; color: var(--muted); }
+  .selector .name { display: block; font-size: 16px; font-weight: 600; margin-top: 2px; }
+  .selector .idea { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+
+  @media (max-width: 760px) {
+    body { padding-bottom: 92px; }
+    header { flex-direction: column; gap: 4px; }
+    .selector ol { gap: 6px; }
+    .selector button { grid-template-columns: 1fr; gap: 6px; padding: 6px; }
+    .selector img { width: 100%; height: 40px; }
+    .selector .idea { display: none; }
+    .selector .name { font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <span><strong>Cadorath</strong> &nbsp;Homepage concepts, October 2026</span>
+  <span>Concept mockups, not a live Cadorath website.</span>
+</header>
+
+<main>
+  <section class="mockup is-active" id="concept-1" aria-label="Concept 1, The part">
+    <img src="img/concept-1-full.jpg" width="1440" height="11040" alt="Full homepage mockup, concept 1, The part: a Bell 206 transmission case held on screen while it moves from worn to inspected to plated to back in service.">
+  </section>
+  <section class="mockup" id="concept-2" aria-label="Concept 2, Back in service">
+    <img src="img/concept-2-full.jpg" width="1440" height="7247" loading="lazy" alt="Full homepage mockup, concept 2, Back in service: helicopters at work, every photo graded in the Cadorath blue.">
+  </section>
+  <section class="mockup" id="concept-3" aria-label="Concept 3, Finish">
+    <img src="img/concept-3-full.jpg" width="1440" height="8931" loading="lazy" alt="Full homepage mockup, concept 3, Finish: the line Before you scrap it, send it to Cadorath set full width, then bands in the colours of real metal finishes.">
+  </section>
+</main>
+
+<footer>
+  Photography is a mix of Cadorath's own images and licensed stand-ins that a Cadorath photo shoot would replace.
+  Concept 2 hero and brand sheet: photo by Lennart Brügge, CC BY-SA 4.0, via Wikimedia Commons, modified (cropped, retouched, colour graded).
+  Other stand-ins are Unsplash, Pexels or public domain images. Fonts: SF Pro (Apple, shown on Apple devices) and Manrope.
+</footer>
+
+<nav class="selector" aria-label="Choose a concept">
+  <ol>
+    <li><button type="button" data-target="concept-1" aria-current="true">
+      <img src="img/concept-1-thumb.jpg" alt="">
+      <span><span class="num">Concept 1</span><span class="name">The part</span><span class="idea">One real part, from worn to back in service.</span></span>
+    </button></li>
+    <li><button type="button" data-target="concept-2" aria-current="false">
+      <img src="img/concept-2-thumb.jpg" alt="">
+      <span><span class="num">Concept 2</span><span class="name">Back in service</span><span class="idea">The aircraft at work, never the part.</span></span>
+    </button></li>
+    <li><button type="button" data-target="concept-3" aria-current="false">
+      <img src="img/concept-3-thumb.jpg" alt="">
+      <span><span class="num">Concept 3</span><span class="name">Finish</span><span class="idea">One line, then the colours of real finishes.</span></span>
+    </button></li>
+  </ol>
+</nav>
+
+<script>
+  const buttons = [...document.querySelectorAll('.selector button')];
+  const ids = buttons.map(b => b.dataset.target);
+
+  function show(id, push) {
+    if (!ids.includes(id)) id = ids[0];
+    document.querySelectorAll('.mockup').forEach(s => s.classList.toggle('is-active', s.id === id));
+    buttons.forEach(b => b.setAttribute('aria-current', String(b.dataset.target === id)));
+    window.scrollTo(0, 0);
+    if (push) history.replaceState(null, '', '#' + id);
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.target, true)));
+
+  // 1, 2, 3 or left and right arrows switch concepts
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const cur = ids.indexOf(document.querySelector('.mockup.is-active').id);
+    if (['1', '2', '3'].includes(e.key)) show(ids[+e.key - 1], true);
+    else if (e.key === 'ArrowRight') show(ids[(cur + 1) % ids.length], true);
+    else if (e.key === 'ArrowLeft') show(ids[(cur + ids.length - 1) % ids.length], true);
+  });
+
+  show(location.hash.slice(1), false);
+</script>
+</body>
+</html>
