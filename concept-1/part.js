@@ -36,7 +36,7 @@
   small.addEventListener('change', frame);
 
   /* ---------- active nav link ---------- */
-  const links = $$('.nav-links a');
+  const links = $$('.nav-links a[href^="#"]');  // in-page anchors only; stub links are not selectors
   const secIO = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
@@ -63,7 +63,8 @@
   openBtn.addEventListener('click', openMenu);
   closeBtn.addEventListener('click', () => closeMenu());
   $$('[data-menu-link]', menu).forEach(a => a.addEventListener('click', e => {
-    const t = $(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    const t = href.startsWith('#') ? $(href) : null;
     if (!t) return closeMenu(false);
     e.preventDefault();
     closeMenu(false);

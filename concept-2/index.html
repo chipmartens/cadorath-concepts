@@ -157,12 +157,17 @@ a[href^="tel:"],a[href^="mailto:"]{border-bottom:1px solid currentColor}
 .band p{font-size:14px;opacity:.9;padding-bottom:10px}
 
 /* ---------- audience rows (Oath) ---------- */
-.rows{padding:160px var(--m) 140px}
+.rows{padding:140px var(--m) 140px}
 .rows h2{font-size:28px;font-weight:500;margin-bottom:40px;letter-spacing:-0.015em}
-.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;border-top:1px solid var(--rule);padding:34px 0 38px}
+.row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:40px;border-top:1px solid var(--rule);padding:34px 0 38px}
+.row-img{position:absolute;z-index:2;right:150px;top:50%;width:min(380px,30vw);aspect-ratio:4/3;overflow:hidden;pointer-events:none;clip-path:inset(50% 0 50% 0);transform:translateY(-50%);transition:clip-path .55s var(--ease)}
+.row-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform .9s var(--ease)}
+.row:hover .row-img,.row:focus-visible .row-img{clip-path:inset(0 0 0 0)}
+.row:hover .row-img img,.row:focus-visible .row-img img{transform:scale(1)}
+.row > div{position:relative;z-index:3;max-width:calc(100% - 420px)}
 .row:last-child{border-bottom:1px solid var(--rule)}
 .row h3{font-size:clamp(44px,5.8vw,84px);transition:color .3s,transform .5s var(--ease)}
-.row p{font-size:19px;color:var(--mute);margin-top:12px;max-width:34em;transition:color .3s}
+.row p{font-size:19px;color:var(--mute);margin-top:12px;max-width:31em;transition:color .3s}
 .row svg{width:96px;height:40px;transition:transform .5s var(--ease)}
 .row:hover h3,.row:focus-visible h3{color:var(--cobalt);transform:translateX(12px)}
 .row:hover p{color:var(--ink)}
@@ -220,7 +225,7 @@ a[href^="tel:"],a[href^="mailto:"]{border-bottom:1px solid currentColor}
 
 /* ---------- footer ---------- */
 footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflow:hidden}
-.f-top{display:grid;grid-template-columns:4fr 2fr 2fr 4fr;gap:24px}
+.f-top{display:grid;grid-template-columns:3fr 2fr 2fr 2fr 3fr;gap:24px}
 .f-top .sign{font-family:var(--fd);font-weight:400;font-size:40px;letter-spacing:-0.025em;line-height:1.02}
 .f-top h3{font-size:14px;font-weight:400;opacity:.66;margin-bottom:12px}
 .f-top ul{list-style:none;font-size:16px}
@@ -280,11 +285,15 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   .band h2{font-size:40px}
   .rows{padding:104px var(--m) 96px}
   .rows h2{font-size:24px;margin-bottom:24px}
-  .row{gap:16px;padding:24px 0 28px}
+  .row{gap:16px;padding:0 0 28px;grid-template-columns:minmax(0,1fr) auto}
+  .row-img{position:static;grid-column:1 / -1;order:-1;width:auto;margin:0 calc(-1 * var(--m)) 18px;aspect-ratio:16/9;clip-path:none;transform:none}
+  .row-img img{transform:none}
+  .row > div{max-width:none}
+  .row:first-of-type{border-top:0}
   .row h3{font-size:42px}
   .row p{font-size:17px;margin-top:10px}
   .row svg{width:44px;height:20px}
-  .approvals{padding:0 var(--m) 104px;gap:32px}
+  .approvals{padding:80px var(--m) 104px;gap:32px}
   .approvals h2{font-size:36px}
   .ap-list li{grid-template-columns:1fr;gap:6px;padding:20px 0 22px}
   .ap-list strong{font-size:24px}
@@ -348,8 +357,8 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   </div>
   <div class="ov-body">
     <ul class="ov-links">
-      <li><a href="stub.html?p=repair">Repair</a></li>
-      <li><a href="stub.html?p=engines">Engines</a></li>
+      <li><a href="#aviation" data-close>Aviation</a></li>
+      <li><a href="stub.html?p=uniflyte">Agriculture</a></li>
       <li><a href="stub.html?p=processes">Special processes</a></li>
       <li><a href="#approvals" data-close>Approvals</a></li>
       <li><a href="#careers" data-close>Careers</a></li>
@@ -361,7 +370,7 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
       <div><h2>Aircraft on ground?</h2>Call <a href="tel:+18004707069">1.800.470.7069</a></div>
       <div><h2>Winnipeg</h2>2070 Logan Ave, Winnipeg, MB <span class="nw">R2R 0H9</span></div>
       <div><h2>Lafayette</h2>210 Stanton St, Broussard, LA 70518</div>
-      <div><h2>More</h2><a href="stub.html?p=about">About</a>, <a href="stub.html?p=news">News</a>, <a href="stub.html?p=defence">Defence</a>, <a href="stub.html?p=uniflyte">Uniflyte agriculture</a></div>
+      <div><h2>More</h2><a href="stub.html?p=engines">Engines</a>, <a href="stub.html?p=about">About</a>, <a href="stub.html?p=news">News</a>, <a href="stub.html?p=defence">Defence</a></div>
     </div>
   </div>
   <p class="ov-foot">Transport Canada AMO 86-91. FAA 04YR302Y. EASA 145.7017.</p>
@@ -411,7 +420,26 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   </div>
 </section>
 
-<section class="statement" aria-labelledby="st-h">
+<section class="rows" id="what-we-do" aria-labelledby="rows-h">
+  <h2 id="rows-h" class="d rv">What we do</h2>
+  <a class="row" href="#aviation">
+    <div><h3 class="d">Aviation</h3><p>Airbus and Bell dynamic components, Rolls-Royce M250 and RR300 engines, and exchange parts. For repair shops, operators and engine owners.</p></div>
+    <figure class="row-img" aria-hidden="true"><img src="img/biz-aviation.jpg" alt="" width="1200" height="900" loading="lazy"></figure>
+    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
+  </a>
+  <a class="row" href="stub.html?p=uniflyte">
+    <div><h3 class="d">Agriculture</h3><p>Cadorath Uniflyte auger flighting, helicoid and sectional, including patented UltraFlyte. Made in Orion, Illinois and Bettendorf, Iowa.</p></div>
+    <figure class="row-img" aria-hidden="true"><img src="img/biz-agriculture.jpg" alt="" width="1200" height="899" loading="lazy"></figure>
+    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
+  </a>
+  <a class="row" href="stub.html?p=processes">
+    <div><h3 class="d">Special processes</h3><p>About 20 plating and anodizing processes, hard chrome, electroless nickel, robotic HVOF thermal spray, vacuum brazing and heat treatment. For aerospace, agriculture and industry.</p></div>
+    <figure class="row-img" aria-hidden="true"><img src="img/biz-processes.jpg" alt="" width="800" height="600" loading="lazy"></figure>
+    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
+  </a>
+</section>
+
+<section class="statement" id="aviation" aria-labelledby="st-h">
   <h2 id="st-h" class="d rv">More than a thousand repairs, approved by Transport Canada.</h2>
   <div class="rv">
     <p>They cover rotor wing aircraft and engines. Since 2015 we have held Transport Canada design delegation <span class="nw">DAO 15-C-01</span>, so a new repair can be designed and approved here. Plating, thermal spray, brazing, machining and inspection all run in our own shops.</p>
@@ -425,22 +453,6 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
     <h2 id="band-h" class="d">Back on the aircraft.</h2>
     <p>Bell 412. Transport Canada, FAA and EASA approved repairs.</p>
   </div>
-</section>
-
-<section class="rows" aria-labelledby="rows-h">
-  <h2 id="rows-h" class="d rv">Send us the part.</h2>
-  <a class="row" href="stub.html?p=repair-shops">
-    <div><h3 class="d">Repair shops</h3><p>The repairs your line can't do. The plating your shop doesn't run.</p></div>
-    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
-  </a>
-  <a class="row" href="stub.html?p=operators">
-    <div><h3 class="d">Operators</h3><p>Airbus and Bell dynamic components, repaired, approved and sent back to your base.</p></div>
-    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
-  </a>
-  <a class="row" href="stub.html?p=engines">
-    <div><h3 class="d">Engines</h3><p>Rolls-Royce M250 and RR300 overhaul, exchange, rental and test, in Winnipeg and Lafayette.</p></div>
-    <svg aria-hidden="true"><use href="#long-arrow"/></svg>
-  </a>
 </section>
 
 <section class="approvals" id="approvals" aria-labelledby="ap-h">
@@ -511,8 +523,9 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 <footer>
   <div class="f-top">
     <p class="sign">Family owned<br>since 1954.</p>
-    <div><h3>Repair</h3><ul><li><a href="stub.html?p=airbus">Airbus Helicopters</a></li><li><a href="stub.html?p=bell">Bell</a></li><li><a href="stub.html?p=rolls-royce">Rolls-Royce</a></li><li><a href="stub.html?p=honeywell">Honeywell</a></li></ul></div>
-    <div><h3>Company</h3><ul><li><a href="stub.html?p=about">About</a></li><li><a href="#careers">Careers</a></li><li><a href="stub.html?p=news">News</a></li><li><a href="stub.html?p=defence">Defence</a></li><li><a href="stub.html?p=uniflyte">Uniflyte agriculture</a></li></ul></div>
+    <div><h3>What we do</h3><ul><li><a href="#aviation">Aviation</a></li><li><a href="stub.html?p=uniflyte">Agriculture</a></li><li><a href="stub.html?p=processes">Special processes</a></li></ul></div>
+    <div><h3>Aviation repair</h3><ul><li><a href="stub.html?p=airbus">Airbus Helicopters</a></li><li><a href="stub.html?p=bell">Bell</a></li><li><a href="stub.html?p=rolls-royce">Rolls-Royce</a></li><li><a href="stub.html?p=honeywell">Honeywell</a></li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="stub.html?p=about">About</a></li><li><a href="#careers">Careers</a></li><li><a href="stub.html?p=news">News</a></li><li><a href="stub.html?p=defence">Defence</a></li></ul></div>
     <div class="visit"><h3>Contact</h3>
       <address><a href="tel:+12049851317">204.985.1317</a><br>Toll free <a href="tel:+18004707069">1.800.470.7069</a><br><a href="mailto:info@cadorath.com">info@cadorath.com</a></address>
       <address>2070 Logan Ave, Winnipeg, MB <span class="nw">R2R 0H9</span><br>210 Stanton St, Broussard, LA 70518</address>
