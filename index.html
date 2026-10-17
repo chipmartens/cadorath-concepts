@@ -44,6 +44,7 @@
 
   .pill {
     all: unset; box-sizing: border-box; cursor: pointer; height: 44px; padding: 0 16px;
+    pointer-events: auto; /* all: unset would inherit pointer-events: none from .controls */
     display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
     font: 600 13px/1 var(--font); color: var(--text); text-decoration: none;
     background: var(--glass); border: 1px solid var(--line); border-radius: 999px;
