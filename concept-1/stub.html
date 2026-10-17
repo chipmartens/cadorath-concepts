@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadorath</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .stub { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--m); }
+  .stub h1 { font: 300 clamp(44px, 6vw, 88px)/1 var(--display); letter-spacing: -.03em; color: var(--gold); }
+  .stub p { margin-top: 24px; }
+</style>
+</head>
+<body>
+<main class="stub">
+  <h1 data-title>This page</h1>
+  <p class="body">This page is outside the homepage mockup. In the full site it carries the detail behind the link you followed.</p>
+  <p><a class="link" href="index.html">Back to the homepage</a></p>
+</main>
+<script>
+  const p = new URLSearchParams(location.search).get('p');
+  if (p) { document.querySelector('[data-title]').textContent = p; document.title = p + ' | Cadorath'; }
+</script>
+</body>
+</html>

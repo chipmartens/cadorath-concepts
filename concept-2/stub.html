@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadorath</title>
+<style>
+@font-face{font-family:"CD";src:local("SF Pro Display Heavy"),local("SFProDisplay-Heavy");font-weight:800}
+@font-face{font-family:"CT";src:local("SF Pro Text"),local("SFProText-Regular");font-weight:400}
+@font-face{font-family:"Manrope";src:url(fonts/Manrope-latin.woff2) format("woff2");font-weight:200 800;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"CT","SF Pro Text",-apple-system,"Manrope",sans-serif;color:#06101F;background:#fff;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid #6CB1C8;outline-offset:3px;border-radius:4px}
+header{background:#001646;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:20px 40px}
+.brand{display:flex;align-items:center;gap:12px}.brand svg{width:42px;height:22px}
+.brand b{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:800;font-size:21px;letter-spacing:.01em}
+main{padding:120px 40px;max-width:1100px}
+h1{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:800;letter-spacing:-0.022em;line-height:.98;font-size:clamp(44px,6vw,88px)}
+p{font-size:20px;line-height:1.55;margin-top:28px;max-width:34em;color:#566272}
+.pill{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:40px;background:#001646;color:#fff;margin-top:40px;transition:background .25s}
+.pill:hover{background:#0D4A84}
+footer{background:#1C3014;color:#fff;padding:28px 40px;font-size:14px;opacity:.95}
+@media (max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}main{padding-top:72px}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="./" aria-label="Cadorath home"><svg viewBox="0 0 248.3 127.4" fill="currentColor" aria-hidden="true"><path d="M247.601,87.784C235.85,51.636 208.251,22.642 172.993,9.006C140.522,20.048 117.152,50.772 117.152,86.976C117.152,101.446 120.897,115.038 127.453,126.857C130.659,91.84 160.095,64.408 195.95,64.408C216.537,64.408 234.993,73.458 247.601,87.784Z"/><path d="M171.874,8.581C136.294,-4.788 96.412,-1.307 63.758,17.743C52.13,50.006 61.562,87.438 89.855,110.024C101.169,119.056 114.126,124.607 127.451,126.859C102.086,102.503 99.013,62.384 121.38,34.366C134.222,18.277 152.813,9.498 171.874,8.581Z"/><path d="M51.379,73.898C46.866,53.816 51.553,33.82 62.729,18.351C25.827,40.406 1.119,80.751 1.119,126.866L127.453,126.858C88.399,126.858 58.896,107.348 51.379,73.898Z"/></svg><b>CADORATH</b></a><a href="./#quote">Request a quote</a></header>
+<main>
+  <h1 id="t">Repair</h1>
+  <p>This page is part of the planned site map. The homepage shows the system it will be built in.</p>
+  <a class="pill" href="./">Back to the homepage <span aria-hidden="true">→</span></a>
+</main>
+<footer>Cadorath. Winnipeg, Manitoba and Lafayette, Louisiana.</footer>
+<script>
+const T = { repair:'Repair', engines:'Engines', processes:'Special processes', about:'About', news:'News', defence:'Defence', uniflyte:'Uniflyte agriculture',
+  'repair-shops':'For repair shops', operators:'For operators', engineering:'How a repair gets approved', approvals:'Approvals and certificates', careers:'Careers',
+  airbus:'Airbus Helicopters', bell:'Bell', 'rolls-royce':'Rolls-Royce', honeywell:'Honeywell',
+  'news-h135':'Airbus H135 and H145 added to our repair approvals', 'news-president':'Brandy Cadorath appointed President', 'news-lafayette':'Lafayette expansion doubles the facility' };
+const k = new URLSearchParams(location.search).get('p'); const t = T[k] || 'Page';
+document.getElementById('t').textContent = t; document.title = t + ' | Cadorath';
+</script>
+</body>
+</html>

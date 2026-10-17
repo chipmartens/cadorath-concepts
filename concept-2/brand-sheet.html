@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>Cadorath brand sheet: Back in service</title>
+<style>
+@font-face{font-family:"CD";src:local("SF Pro Display Heavy"),local("SFProDisplay-Heavy");font-weight:800}
+@font-face{font-family:"CD";src:local("SF Pro Display Black"),local("SFProDisplay-Black");font-weight:900}
+@font-face{font-family:"CT";src:local("SF Pro Text"),local("SFProText-Regular");font-weight:400}
+@font-face{font-family:"Manrope";src:url(fonts/Manrope-latin.woff2) format("woff2");font-weight:200 800}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1920px;height:1080px;overflow:hidden;font-family:"CT","SF Pro Text",-apple-system,"Manrope",sans-serif;color:#06101F;background:#fff;-webkit-font-smoothing:antialiased}
+.d{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:800;letter-spacing:-0.022em;line-height:.98}
+.lock b,.lock-white b,.sw b{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif}
+.sheet{display:grid;grid-template-columns:600px minmax(0,1fr) 520px;grid-template-rows:520px 1fr;height:1080px}
+h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
+.note{font-size:15px;line-height:1.5;color:#5A6675}
+
+/* logo */
+.logo{grid-row:1 / span 2;background:#001646;color:#fff;padding:56px;display:flex;flex-direction:column;justify-content:space-between}
+.logo h2{color:rgba(255,255,255,.62)}
+.lock{display:flex;align-items:center;gap:22px}
+.lock svg{width:120px;height:62px}
+.lock b{font-weight:900;font-size:58px;letter-spacing:.005em}
+.big{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:900;font-size:86px;letter-spacing:-0.012em;line-height:.8;color:#6CB1C8;white-space:nowrap}
+.lock-white{background:#fff;color:#06101F;padding:40px;display:flex;align-items:center;gap:18px}
+.lock-white svg{width:86px;height:44px}
+.lock-white b{font-weight:900;font-size:42px;letter-spacing:.005em}
+.logo .note{color:rgba(255,255,255,.72);max-width:440px}
+
+/* type */
+.type{padding:56px 56px 40px;border-bottom:1px solid #D7DDE3}
+.spec{font-size:104px}
+.type .row{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px;align-items:start}
+.type .body{font-size:20px;line-height:1.5}
+.meta{font-size:15px;line-height:1.6;color:#5A6675}
+.meta strong{color:#06101F;font-weight:400}
+
+/* imagery */
+.img{grid-column:3;grid-row:1 / span 2;padding:56px 56px 48px 8px;display:flex;flex-direction:column}
+.ba{display:grid;gap:10px}
+.ba img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.ba span{font-size:13px;color:#5A6675}
+.recipe{list-style:none;margin-top:26px;counter-reset:r}
+.recipe li{counter-increment:r;display:grid;grid-template-columns:28px 1fr;font-size:15px;line-height:1.45;padding:9px 0;border-top:1px solid #D7DDE3}
+.recipe li::before{content:counter(r);color:#5A6675}
+.ramp{display:flex;height:14px;margin-top:6px}
+.ramp i{flex:1}
+
+/* colour + components */
+.bottom{grid-column:2;display:flex;flex-direction:column;gap:32px;padding:40px 56px 56px}
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;height:200px}
+.sw div{padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:14px;line-height:1.35}
+.sw b{font-weight:900;font-size:16px;letter-spacing:-0.01em;display:block}
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;align-items:start}
+.comp h2{grid-column:1 / -1;margin-bottom:0}
+.comp .stack{display:flex;flex-direction:column;gap:12px}
+.field{background:#0D4A84;padding:22px;display:flex;gap:12px;align-items:center}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 22px;border-radius:40px;font-size:16px;background:#fff;color:#06101F}
+.pill.dk{background:#001646;color:#fff}
+.arow{display:grid;grid-template-columns:1fr auto;align-items:center;border-top:1px solid #D7DDE3;border-bottom:1px solid #D7DDE3;padding:16px 0 18px}
+.arow h3{font-size:38px}
+.arow p{font-size:14px;color:#5A6675;margin-top:8px}
+.arow svg{width:64px;height:28px}
+.capr{background:#001646;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;font-size:12.5px;white-space:nowrap}
+.capr svg{flex:none}
+.capr svg{width:36px;height:36px;transform:rotate(-90deg)}
+.ask{display:flex;align-items:center;background:#fff;border-radius:40px;padding:4px;flex:1}
+.ask .ph{flex:1;padding:0 16px;font-size:15px;color:#566272}
+.tk{display:flex;gap:8px}.tk i{display:block;width:22px;height:2px;background:rgba(255,255,255,.32)}.tk i.f{background:#fff}.tk i.h{background:linear-gradient(90deg,#fff 50%,rgba(255,255,255,.32) 50%)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 248.3 127.4"><path d="M247.601,87.784C235.85,51.636 208.251,22.642 172.993,9.006C140.522,20.048 117.152,50.772 117.152,86.976C117.152,101.446 120.897,115.038 127.453,126.857C130.659,91.84 160.095,64.408 195.95,64.408C216.537,64.408 234.993,73.458 247.601,87.784Z"/><path d="M171.874,8.581C136.294,-4.788 96.412,-1.307 63.758,17.743C52.13,50.006 61.562,87.438 89.855,110.024C101.169,119.056 114.126,124.607 127.451,126.859C102.086,102.503 99.013,62.384 121.38,34.366C134.222,18.277 152.813,9.498 171.874,8.581Z"/><path d="M51.379,73.898C46.866,53.816 51.553,33.82 62.729,18.351C25.827,40.406 1.119,80.751 1.119,126.866L127.453,126.858C88.399,126.858 58.896,107.348 51.379,73.898Z"/></symbol>
+  <symbol id="markc" viewBox="0 0 248.3 127.4"><path fill="#6CB1C8" d="M247.601,87.784C235.85,51.636 208.251,22.642 172.993,9.006C140.522,20.048 117.152,50.772 117.152,86.976C117.152,101.446 120.897,115.038 127.453,126.857C130.659,91.84 160.095,64.408 195.95,64.408C216.537,64.408 234.993,73.458 247.601,87.784Z"/><path fill="#3E5F21" d="M171.874,8.581C136.294,-4.788 96.412,-1.307 63.758,17.743C52.13,50.006 61.562,87.438 89.855,110.024C101.169,119.056 114.126,124.607 127.451,126.859C102.086,102.503 99.013,62.384 121.38,34.366C134.222,18.277 152.813,9.498 171.874,8.581Z"/><path fill="#001646" d="M51.379,73.898C46.866,53.816 51.553,33.82 62.729,18.351C25.827,40.406 1.119,80.751 1.119,126.866L127.453,126.858C88.399,126.858 58.896,107.348 51.379,73.898Z"/></symbol>
+</svg>
+<div class="sheet">
+
+  <section class="logo">
+    <div>
+      <h2>Logo</h2>
+      <div class="lock"><svg fill="#fff"><use href="#mark"/></svg><b>CADORATH</b></div>
+    </div>
+    <div class="lock-white"><svg><use href="#markc"/></svg><b>CADORATH</b></div>
+    <p class="note">The crescent mark stays exactly as drawn, in its three logo colours or solid white. The wordmark is set in SF Pro Display Black with the R and A opened by hand. MoreUPTime leaves the lockup (Cadorath to confirm).</p>
+    <p class="big" aria-label="Cadorath">CADO<span style="margin-right:.035em">R</span>ATH</p>
+  </section>
+
+  <section class="type">
+    <h2>Type: SF Pro Display Heavy and Black, SF Pro Text. Manrope as the open fallback</h2>
+    <p class="spec d">Write the repair.</p>
+    <div class="row">
+      <p class="body">Since 2015 we have held Transport Canada design delegation DAO 15-C-01, so a new repair can be designed and approved here.</p>
+      <p class="meta"><strong>Display, SF Pro Display Heavy 800.</strong> 64 px on the hero, 72 px statements, 120 px audience rows. Tracking minus 2.2 percent, leading 0.98. Black 900 for the wordmark only.<br><strong>Body, SF Pro Text Regular 400.</strong> 18 to 20 px. Manrope is self-hosted for non-Apple viewers.</p>
+    </div>
+  </section>
+
+  <section class="img">
+    <h2>Imagery: the aircraft working, graded in the logo blue</h2>
+    <div class="ba">
+      <img src="img/recipe-before.jpg" alt="Source frame before the grade."><span>Source frame, operator marks retouched out</span>
+      <img src="img/recipe-after.jpg" alt="The same frame after the Cadorath grade."><span>After the grade</span>
+    </div>
+    <ol class="recipe">
+      <li><span>Show the aircraft at work. Never the part on a bench, never a livery or operator logo.</span></li>
+      <li><span>Map luminance to the logo blues.<div class="ramp"><i style="background:#030F26"></i><i style="background:#001646"></i><i style="background:#0D4A84"></i><i style="background:#2F7DB9"></i><i style="background:#7CB9CF"></i><i style="background:#F2F8FA"></i></div></span></li>
+      <li><span>Paint, loads and buckets go into the blue with everything else. Only real light stays warm: low sun on cloud.</span></li>
+      <li><span>Shadows lifted so the aircraft keeps its detail. Fine grain. One script grades every frame.</span></li>
+    </ol>
+  </section>
+
+  <section class="bottom">
+    <div>
+      <h2>Colour: the logo, used at scale</h2>
+      <div class="sw">
+        <div style="background:#001646;color:#fff"><b>Navy</b>#001646<br>Shadows</div>
+        <div style="background:#0D4A84;color:#fff"><b>Cobalt</b>#0D4A84<br>Midtones</div>
+        <div style="background:#6CB1C8;color:#06101F"><b>Sky</b>#6CB1C8<br>Lights</div>
+        <div style="background:#1C3014;color:#fff"><b>Moss</b>#1C3014<br>Footer field</div>
+        <div style="background:#06101F;color:#fff"><b>Ink</b>#06101F<br>Text</div>
+        <div style="background:#F3F5F7;color:#06101F"><b>White</b>#FFFFFF<br>Ground</div>
+      </div>
+    </div>
+    <div class="comp">
+      <h2>Components</h2>
+      <div class="stack"><div class="field"><span class="ask"><span class="ph">Part number or model</span><span class="pill dk">Check →</span></span></div>
+      <div class="capr"><span>Airbus H125. Airbus Helicopters D-Level repair centre.</span><span class="tk"><i class="f"></i><i class="h"></i><i></i></span></div></div><div class="arow"><div><h3 class="d">Engines</h3><p>M250 and RR300 overhaul, exchange and test.</p></div><svg viewBox="0 0 96 40"><path d="M0 20h92M74 2l18 18-18 18" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

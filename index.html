@@ -2,104 +2,85 @@
 <html lang="en-CA">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Cadorath homepage concepts</title>
 <style>
   :root {
-    --bg: #0d0e10;
-    --bar: rgba(16, 17, 20, 0.92);
-    --line: rgba(255, 255, 255, 0.12);
+    --bg: #0b0c0e;
+    --dock: rgba(18, 19, 22, 0.78);
+    --line: rgba(255, 255, 255, 0.14);
     --text: #f2f2f0;
-    --muted: #9a9ea6;
-    --accent: #f2f2f0;
+    --muted: #a3a7ae;
+    --gap: 14px;
+    --radius: 22px;
+    --below: 72px;
     --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; }
-  html { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
-  body { min-height: 100vh; padding-bottom: 132px; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow: hidden; }
 
-  header {
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    max-width: 1440px; margin: 0 auto; padding: 20px 16px 16px;
-    font-size: 13px; color: var(--muted);
+  /* the live homepage, full width, scrolling inside a rounded box */
+  .frame {
+    position: fixed; inset: var(--gap) var(--gap) var(--below) var(--gap);
+    border-radius: var(--radius); overflow: hidden; background: #fff;
+    box-shadow: 0 0 0 1px var(--line);
   }
-  header strong { color: var(--text); font-weight: 600; }
+  .frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 
-  main { max-width: 1440px; margin: 0 auto; }
-  .mockup { display: none; }
-  .mockup.is-active { display: block; }
-  .mockup img { display: block; width: 100%; height: auto; }
-
-  footer {
-    max-width: 1440px; margin: 0 auto; padding: 28px 16px 8px;
-    font-size: 12px; line-height: 1.6; color: var(--muted);
+  /* the concept selector floats over the bottom of the box */
+  .dock {
+    position: fixed; z-index: 10; left: 50%; transform: translateX(-50%);
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    width: max-content; max-width: calc(100% - 2 * var(--gap));
+    display: flex; align-items: center; gap: 18px;
+    padding: 6px 16px 6px 6px;
+    background: var(--dock); border: 1px solid var(--line); border-radius: 18px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
   }
-
-  nav.selector {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
-    background: var(--bar);
-    -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
-    border-top: 1px solid var(--line);
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  }
-  .selector ol {
-    list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-    max-width: 1440px; margin: 0 auto;
-  }
-  .selector button {
+  .dock ol { list-style: none; padding: 0; display: flex; gap: 4px; }
+  .dock button {
     all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
-    display: grid; grid-template-columns: 112px 1fr; gap: 14px; align-items: center;
-    padding: 8px; border-radius: 10px; border: 1px solid transparent;
+    display: flex; gap: 10px; align-items: center; white-space: nowrap;
+    padding: 5px 12px 5px 5px; border-radius: 12px; border: 1px solid transparent;
     transition: background-color .2s ease, border-color .2s ease;
   }
-  .selector button:hover { background: rgba(255, 255, 255, 0.05); }
-  .selector button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .selector button[aria-current="true"] { background: rgba(255, 255, 255, 0.08); border-color: var(--line); }
-  .selector img { width: 112px; height: 70px; object-fit: cover; border-radius: 6px; display: block; opacity: .7; transition: opacity .2s ease; }
-  .selector button[aria-current="true"] img, .selector button:hover img { opacity: 1; }
-  .selector .num { font-size: 12px; color: var(--muted); }
-  .selector .name { display: block; font-size: 16px; font-weight: 600; margin-top: 2px; }
-  .selector .idea { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+  .dock button:hover { background: rgba(255, 255, 255, 0.06); }
+  .dock button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  .dock button[aria-current="true"] { background: rgba(255, 255, 255, 0.1); border-color: var(--line); }
+  .dock ol img { width: 64px; height: 40px; object-fit: cover; border-radius: 8px; display: block; opacity: .6; transition: opacity .2s ease; }
+  .dock button[aria-current="true"] img, .dock button:hover img { opacity: 1; }
+  .dock .num { display: block; font-size: 11px; color: var(--muted); }
+  .dock .name { display: block; font-size: 14px; font-weight: 600; }
+  .dock .idea { display: none; }
 
-  @media (max-width: 760px) {
-    body { padding-bottom: 92px; }
-    header { flex-direction: column; gap: 4px; }
-    .selector ol { gap: 6px; }
-    .selector button { grid-template-columns: 1fr; gap: 6px; padding: 6px; }
-    .selector img { width: 100%; height: 40px; }
-    .selector .idea { display: none; }
-    .selector .name { font-size: 13px; }
+  .meta { font-size: 11.5px; line-height: 1.5; color: var(--muted); padding-left: 16px; border-left: 1px solid var(--line); }
+  .meta a { color: var(--text); }
+  .byline { white-space: nowrap; display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 13px; margin-bottom: 4px; }
+  .byline img { display: block; height: 14px; width: auto; }
+
+  @media (max-width: 960px) {
+    :root { --gap: 8px; --radius: 16px; --below: 104px; }
+    .dock { flex-direction: column; align-items: stretch; gap: 4px; padding: 6px; width: calc(100% - 2 * var(--gap)); bottom: calc(8px + env(safe-area-inset-bottom)); }
+    .meta { order: -1; border: 0; padding: 0 4px; }
+    .meta .note { display: none; }
+    .byline { font-size: 11px; color: var(--muted); margin: 0; }
+    .byline img { height: 10px; }
+    .dock ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .dock button { padding: 4px 6px 4px 4px; gap: 6px; }
+    .dock ol img { width: 40px; height: 28px; }
+    .dock .num { display: none; }
+    .dock .name { font-size: 12px; white-space: normal; line-height: 1.2; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
 
-<header>
-  <span><strong>Cadorath</strong> &nbsp;Homepage concepts, October 2026</span>
-  <span>Concept mockups, not a live Cadorath website.</span>
-</header>
+<div class="frame"><iframe id="view" src="concept-1/" title="Cadorath homepage concept"></iframe></div>
 
-<main>
-  <section class="mockup is-active" id="concept-1" aria-label="Concept 1, The part">
-    <img src="img/concept-1-full.jpg" width="1440" height="11040" alt="Full homepage mockup, concept 1, The part: a Bell 206 transmission case held on screen while it moves from worn to inspected to plated to back in service.">
-  </section>
-  <section class="mockup" id="concept-2" aria-label="Concept 2, Back in service">
-    <img src="img/concept-2-full.jpg" width="1440" height="7247" loading="lazy" alt="Full homepage mockup, concept 2, Back in service: helicopters at work, every photo graded in the Cadorath blue.">
-  </section>
-  <section class="mockup" id="concept-3" aria-label="Concept 3, Finish">
-    <img src="img/concept-3-full.jpg" width="1440" height="8931" loading="lazy" alt="Full homepage mockup, concept 3, Finish: the line Before you scrap it, send it to Cadorath set full width, then bands in the colours of real metal finishes.">
-  </section>
-</main>
-
-<footer>
-  Photography is a mix of Cadorath's own images and licensed stand-ins that a Cadorath photo shoot would replace.
-  Concept 2 hero and brand sheet: photo by Lennart Brügge, CC BY-SA 4.0, via Wikimedia Commons, modified (cropped, retouched, colour graded).
-  Other stand-ins are Unsplash, Pexels or public domain images. Fonts: SF Pro (Apple, shown on Apple devices) and Manrope.
-</footer>
-
-<nav class="selector" aria-label="Choose a concept">
+<nav class="dock" aria-label="Choose a concept">
   <ol>
     <li><button type="button" data-target="concept-1" aria-current="true">
       <img src="img/concept-1-thumb.jpg" alt="">
@@ -114,31 +95,41 @@
       <span><span class="num">Concept 3</span><span class="name">Finish</span><span class="idea">One line, then the colours of real finishes.</span></span>
     </button></li>
   </ol>
+  <div class="meta">
+    <p class="byline"><img src="img/mode40-logo-white.svg" width="72" height="14" alt="mode40"><span>Built by mode40 Strategy &amp; Creative</span></p>
+    <p class="note"><a id="open" href="concept-1/" target="_blank" rel="noopener">Open full screen</a> · <a href="credits.html" target="_blank" rel="noopener">Credits</a></p>
+  </div>
 </nav>
 
 <script>
-  const buttons = [...document.querySelectorAll('.selector button')];
+  const view = document.getElementById('view');
+  const open = document.getElementById('open');
+  const dock = document.querySelector('.dock');
+  const buttons = [...document.querySelectorAll('.dock button')];
   const ids = buttons.map(b => b.dataset.target);
 
   function show(id, push) {
     if (!ids.includes(id)) id = ids[0];
-    document.querySelectorAll('.mockup').forEach(s => s.classList.toggle('is-active', s.id === id));
+    const src = id + '/';
+    if (!view.src.endsWith(src)) view.src = src;
+    open.href = src;
     buttons.forEach(b => b.setAttribute('aria-current', String(b.dataset.target === id)));
-    window.scrollTo(0, 0);
     if (push) history.replaceState(null, '', '#' + id);
   }
 
-  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.target, true)));
-
-  // 1, 2, 3 or left and right arrows switch concepts
-  document.addEventListener('keydown', e => {
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
-    const cur = ids.indexOf(document.querySelector('.mockup.is-active').id);
-    if (['1', '2', '3'].includes(e.key)) show(ids[+e.key - 1], true);
-    else if (e.key === 'ArrowRight') show(ids[(cur + 1) % ids.length], true);
-    else if (e.key === 'ArrowLeft') show(ids[(cur + ids.length - 1) % ids.length], true);
+  // add room under each mockup's footer so the dock never covers the end of the page
+  view.addEventListener('load', () => {
+    const doc = view.contentDocument;
+    if (!doc || !doc.body) return;
+    const last = [...doc.body.children].reverse().find(el => !['SCRIPT', 'STYLE'].includes(el.tagName));
+    const pad = doc.createElement('div');
+    pad.setAttribute('aria-hidden', 'true');
+    pad.style.height = '24px';
+    pad.style.background = last ? getComputedStyle(last).backgroundColor : 'transparent';
+    doc.body.appendChild(pad);
   });
 
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.target, true)));
   show(location.hash.slice(1), false);
 </script>
 </body>
