@@ -41,7 +41,7 @@
     <a href="#careers">Careers</a>
   </nav>
   <button class="nav-menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>Menu</button>
-  <a class="btn btn-gold nav-cta" href="#quote">Request a quote</a>
+  <a class="btn btn-gold nav-cta" href="#quote"><span class="cta-long">Request a quote</span><span class="cta-short">Quote</span></a>
 </header>
 
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden data-menu>
@@ -64,7 +64,9 @@
     </ol>
     <div class="menu-side">
       <p class="menu-h">Winnipeg</p>
-      <p>2070 Logan Avenue<br>Winnipeg, Manitoba R2R 0H9<br><a href="tel:+12049851317">204 985 1317</a></p>
+      <p>2070 Logan Avenue<br>Winnipeg, Manitoba R2R 0H9</p>
+      <p class="menu-h">Call or write</p>
+      <p><a href="tel:+12049851317">204.985.1317</a><br><a href="tel:+18004707069">1.800.470.7069</a> toll free<br><a href="mailto:info@cadorath.com">info@cadorath.com</a></p>
       <p class="menu-h">Lafayette</p>
       <p>210 Stanton Street<br>Broussard, Louisiana 70518</p>
       <p class="menu-h">Also Cadorath</p>
@@ -93,6 +95,26 @@
     <div class="chapters">
       <div class="chap chap-hero" data-chap="1">
         <h1 class="hero-h1">Approved to repair what<br> you were told to replace.</h1>
+        <form class="search" role="search" novalidate data-search>
+          <label class="sr" for="pn">Search by part number</label>
+          <div class="search-row">
+            <input id="pn" name="pn" type="text" autocomplete="off" spellcheck="false" placeholder="Part number, e.g. 350A331090" aria-describedby="pn-msg">
+            <button class="search-go" type="submit">Search <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+          </div>
+          <p class="search-msg" id="pn-msg" aria-live="polite"></p>
+          <div class="result" data-result hidden aria-live="polite">
+            <p class="result-line"><span class="result-tag">Sample data</span> <span class="mono" data-result-q></span> <span data-result-text></span></p>
+            <a class="link" href="#quote" data-quote-from-search>Quote this part <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+          <p class="aog">Aircraft on ground? Call <a href="tel:+18004707069">1.800.470.7069</a></p>
+        </form>
+        <ul class="strip" aria-label="Approvals">
+          <li>Transport Canada AMO <span class="nw">86-91</span>, DAO <span class="nw">15-C-01</span></li>
+          <li>FAA 04YR302Y</li>
+          <li>EASA 145.7017</li>
+          <li>Airbus Helicopters <span class="nw">D-Level</span></li>
+          <li><span class="nw">Rolls-Royce</span> AMROC</li>
+        </ul>
       </div>
       <div class="chap" data-chap="1">
         <div class="copy">
@@ -103,6 +125,7 @@
       </div>
       <div class="chap" data-chap="2">
         <div class="copy">
+          <img class="chap-img" src="img/part-2-inspected.webp" alt="" width="1800" height="1359" loading="lazy">
           <p class="count">02 <span>Inspected</span></p>
           <h2 class="statement">We look closely before anyone says scrap.</h2>
           <p class="body">Fluorescent penetrant, magnetic particle, ultrasonic and eddy current inspection, CMM measurement and a metallurgy lab. When the manual has no repair, our engineers write one and approve it under our own Transport Canada design delegation, DAO <span class="nw">15-C-01</span>.</p>
@@ -110,6 +133,7 @@
       </div>
       <div class="chap" data-chap="3">
         <div class="copy">
+          <img class="chap-img" src="img/part-3-plated.webp" alt="" width="1800" height="1359" loading="lazy">
           <p class="count">03 <span>Plated</span></p>
           <h2 class="statement">Plating is where we started, in 1954.</h2>
           <p class="body">The machined faces get their finish in our own Winnipeg shops. Twenty plating and anodizing processes, from hard chrome to <span class="nw">zinc-nickel</span>.</p>
@@ -117,16 +141,10 @@
       </div>
       <div class="chap" data-chap="4" id="approvals">
         <div class="copy">
+          <img class="chap-img" src="img/part-4-service.webp" alt="" width="1800" height="1359" loading="lazy">
           <p class="count">04 <span>In service</span></p>
           <h2 class="statement">Released with paperwork an auditor knows.</h2>
-          <dl class="approvals">
-            <div><dt>Airbus Helicopters</dt><dd><span class="nw">D-Level</span> approved repair centre</dd></div>
-            <div><dt><span class="nw">Rolls-Royce</span></dt><dd>AMROC for M250 and RR300</dd></div>
-            <div><dt>Transport Canada</dt><dd>AMO <span class="nw">86-91</span>, DAO <span class="nw">15-C-01</span></dd></div>
-            <div><dt>FAA</dt><dd>Repair station 04YR302Y</dd></div>
-            <div><dt>EASA</dt><dd>145.7017</dd></div>
-            <div><dt>Quality</dt><dd>ISO 9001:2015</dd></div>
-          </dl>
+          <p class="body">Approved by Transport Canada, the FAA and EASA, and inside the Airbus Helicopters and <span class="nw">Rolls-Royce</span> networks. The paperwork travels with the part.</p>
         </div>
       </div>
     </div>
@@ -137,25 +155,8 @@
     <div class="grid">
       <h2 class="statement col-a">Airbus, Bell and <span class="nw">Rolls-Royce.</span> Part by part.</h2>
       <div class="col-b">
-        <p class="body">Over one thousand individual repairs approved by Transport Canada, across rotor wing aircraft and their engines. Look yours up by the number on the data plate.</p>
-        <form class="search" role="search" novalidate data-search>
-          <label class="sr" for="pn">Part number</label>
-          <div class="search-row">
-            <input id="pn" name="pn" type="text" autocomplete="off" spellcheck="false" placeholder="Part number" aria-describedby="pn-msg">
-            <button class="btn btn-ink" type="submit">Search parts <svg aria-hidden="true"><use href="#arrow"/></svg></button>
-          </div>
-          <p class="search-msg" id="pn-msg" aria-live="polite"></p>
-          <div class="result" data-result hidden>
-            <p class="result-tag">Sample result. The live search reads Cadorath&rsquo;s repair tables.</p>
-            <p class="result-q">You searched <span class="mono" data-result-q></span></p>
-            <dl class="result-rows">
-              <div><dt>Platform</dt><dd>Bell 206 family</dd></div>
-              <div><dt>Part</dt><dd>Main transmission case</dd></div>
-              <div><dt>Repair</dt><dd>Approved repair on file</dd></div>
-            </dl>
-            <a class="link link-ink" href="#quote" data-quote-from-search>Quote this repair <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-          </div>
-        </form>
+        <p class="body">Over one thousand individual repairs approved by Transport Canada, across rotor wing aircraft and their engines. Every repair table is searchable by the number on the data plate.</p>
+        <a class="link link-ink" href="#top" data-focus-search>Search by part number <svg aria-hidden="true"><use href="#arrow"/></svg></a>
       </div>
       <ul class="rows col-c">
         <li><a href="stub.html?p=Airbus%20Helicopters%20repairs"><span class="row-h">Airbus Helicopters</span><span class="row-t">H125, AS350, AS355, H130, H135, H145, H155, AS365, EC120, H215, H225</span></a></li>
@@ -241,11 +242,11 @@
   <!-- 8. THE PAYOFF: the complete crescent, once, with the aircraft the part goes back into -->
   <section class="finale">
     <figure class="crescent finale-media">
-      <img src="img/aircraft-bell206-fog.webp" alt="A Bell 206 on a field in golden morning fog" loading="lazy" width="2800" height="1098">
+      <img src="img/aircraft-bell206-fog.webp" alt="A Bell 206 type helicopter on a field in golden morning fog" loading="lazy" width="2800" height="1098">
     </figure>
     <div class="finale-copy">
       <h2 class="finale-h">Back on the aircraft.</h2>
-      <p class="body">The same case, repaired, finished and released to service. Before you order a new one, ask us.</p>
+      <p class="body">Repaired, finished and released to service, so the helicopter flies instead of waiting on a new part. Before you order one, ask us.</p>
       <a class="btn btn-gold" href="#quote">Start a repair quote <svg aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </section>
@@ -255,12 +256,12 @@
     <div class="grid">
       <div class="col-a">
         <h2 class="statement">Start a repair quote.</h2>
-        <p class="body">We respond within 24 hours. Prefer the phone? <a class="inline" href="tel:+18004707069"><span class="nw">1 800 470 7069</span></a></p>
+        <p class="body">We respond within 24 hours. Aircraft on ground? Call <a class="inline" href="tel:+18004707069"><span class="nw">1.800.470.7069</span></a>.</p>
       </div>
       <form class="qform" novalidate data-quote>
         <div class="field">
           <label for="q-pn">Part number</label>
-          <input id="q-pn" name="pn" type="text" autocomplete="off" required>
+          <input id="q-pn" class="mono-in" name="pn" type="text" autocomplete="off" spellcheck="false" required>
           <p class="err" data-err="pn">Enter the part number from the data plate.</p>
         </div>
         <div class="field">
@@ -289,8 +290,8 @@
           <button class="btn btn-gold" type="submit">Send for a quote <svg aria-hidden="true"><use href="#arrow"/></svg></button>
         </div>
         <div class="qform-done field-wide" data-done hidden tabindex="-1">
-          <p class="statement statement-gold">Thanks. This is a demo, so nothing was sent.</p>
-          <p class="body">On the live site this goes straight to Cadorath, who respond within 24 hours.</p>
+          <p class="statement statement-gold">Thanks. Your quote request for <span class="mono" data-done-pn></span> on <span data-done-pl></span> is ready.</p>
+          <p class="body">This is a demo, so nothing was sent. On the live site it goes straight to Cadorath, who respond within 24 hours. In a hurry: <a class="inline" href="tel:+12049851317">204.985.1317</a>, toll free <a class="inline" href="tel:+18004707069">1.800.470.7069</a>, or <a class="inline" href="mailto:info@cadorath.com">info@cadorath.com</a>.</p>
         </div>
       </form>
     </div>
@@ -305,7 +306,7 @@
     </a>
     <div>
       <p class="foot-h">Winnipeg</p>
-      <p>2070 Logan Avenue<br>Winnipeg, Manitoba R2R 0H9<br><a href="tel:+12049851317">204 985 1317</a></p>
+      <p>2070 Logan Avenue<br>Winnipeg, Manitoba R2R 0H9<br><a href="tel:+12049851317">204.985.1317</a></p>
     </div>
     <div>
       <p class="foot-h">Lafayette</p>
@@ -313,7 +314,7 @@
     </div>
     <div>
       <p class="foot-h">Contact</p>
-      <p><a href="mailto:info@cadorath.com">info@cadorath.com</a><br><a href="tel:+18004707069">1 800 470 7069</a><br><a href="stub.html?p=LinkedIn">LinkedIn</a></p>
+      <p><a href="mailto:info@cadorath.com">info@cadorath.com</a><br><a href="tel:+18004707069">1.800.470.7069</a> toll free<br><a href="stub.html?p=LinkedIn">LinkedIn</a></p>
     </div>
     <div>
       <p class="foot-h">Also Cadorath</p>

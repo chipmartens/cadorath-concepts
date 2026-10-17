@@ -1,11 +1,11 @@
-// Concept 1, The part: pinned part states, menu overlay, part search demo, quote form.
+// Concept 1, The part: pinned part states (desktop), static per-chapter states (mobile), menu overlay, part search demo, quote form.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const small = matchMedia('(max-width: 860px)');
 
-  /* ---------- the part: state follows the chapter in view (desktop), cycles on its own (mobile) ---------- */
+  /* ---------- the part: state follows the chapter in view (desktop only; mobile shows one still per chapter) ---------- */
   const pin = $('[data-pin]'), stage = $('[data-stage]'), nav = $('[data-nav]');
   const chaps = $$('[data-chap]');
   const label = $('[data-state-label]');
@@ -33,15 +33,7 @@
   addEventListener('resize', frame);
   frame();
 
-  let cycle;
-  const startCycle = () => {
-    clearInterval(cycle);
-    if (!small.matches || still) return;
-    let n = +stage.dataset.state;
-    cycle = setInterval(() => { n = n % 4 + 1; setState(n); }, 2600);
-  };
-  small.addEventListener('change', () => { startCycle(); frame(); });
-  startCycle();
+  small.addEventListener('change', frame);
 
   /* ---------- active nav link ---------- */
   const links = $$('.nav-links a');
@@ -86,15 +78,36 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
-  /* ---------- part number search: demo result, clearly sample ---------- */
+  /* ---------- part number search: honest sample matching, clearly labelled ---------- */
+  // ponytail: a handful of real prefixes and platform names; the live site queries Cadorath's repair tables.
+  const PLATFORMS = {
+    airbus: { name: 'Airbus Helicopters', option: 'Airbus Helicopters', approval: 'Airbus Helicopters D-Level approved repair centre' },
+    bell: { name: 'Bell', option: 'Bell', approval: 'Transport Canada, FAA and EASA approved repairs' },
+    rr: { name: 'Rolls-Royce M250 and RR300', option: 'Rolls-Royce M250 or RR300', approval: 'Rolls-Royce AMROC for M250 and RR300' },
+    t56: { name: 'Rolls-Royce T56', option: 'Rolls-Royce T56', approval: 'Rolls-Royce Authorized Repair Facility, FIRST Network' },
+    hw: { name: 'Honeywell T53, T55 and LTS101', option: 'Honeywell T53, T55 or LTS101', approval: 'Honeywell T53, T55 and LTS101 approvals' },
+  };
+  const AIRBUS_NAMES = ['AIRBUS', 'H125', 'AS350', 'AS355', 'H130', 'H135', 'H145', 'H155', 'AS365', 'EC120', 'H215', 'H225'];
+  const normalise = v => v.toUpperCase().replace(/\s+/g, '').replace(/O/g, '0').replace(/[IL]/g, '1');
+  function match(raw) {
+    const up = raw.toUpperCase().replace(/\s+/g, ''), n = normalise(raw);
+    if (/^(T53|T55|LTS101|HONEYWELL)/.test(up)) return PLATFORMS.hw;
+    if (/^350A/.test(n) || AIRBUS_NAMES.some(k => up.startsWith(k) || n.startsWith(normalise(k)))) return PLATFORMS.airbus;
+    if (/^(206|407|412)-/.test(n) || /^BE11/.test(n) || up.startsWith('BELL')) return PLATFORMS.bell;
+    if (/^(M250|RR300|250-C)/.test(n) || /^ROLLS/.test(up)) return PLATFORMS.rr;
+    if (/^T56/.test(n)) return PLATFORMS.t56;
+    return null;
+  }
   const search = $('[data-search]'), input = $('#pn'), msg = $('#pn-msg'), result = $('[data-result]');
+  const rq = $('[data-result-q]'), rt = $('[data-result-text]'), toQuote = $('[data-quote-from-search]');
+  let lastHit = null;
   search.addEventListener('submit', e => {
     e.preventDefault();
-    const q = input.value.trim().toUpperCase();
-    if (q.length < 3) {
+    const raw = input.value.trim();
+    if (raw.length < 3) {
       search.classList.add('is-error');
       input.setAttribute('aria-invalid', 'true');
-      msg.textContent = q ? 'Part numbers are at least three characters.' : 'Enter a part number to search.';
+      msg.textContent = raw ? 'Part numbers are at least three characters.' : 'Enter a part number or a platform, like 350A or M250.';
       result.hidden = true;
       input.focus();
       return;
@@ -102,12 +115,29 @@
     search.classList.remove('is-error');
     input.removeAttribute('aria-invalid');
     msg.textContent = '';
-    $('[data-result-q]', result).textContent = q;
+    const up = raw.toUpperCase().replace(/\s+/g, '');
+    const q = /^[A-Z]{3,}/.test(up) ? up : normalise(raw), hit = match(raw);  // names like LTS101 stay as typed
+    lastHit = hit;
+    rq.textContent = q;
+    if (hit) {
+      rt.textContent = `${hit.name}. Approval: ${hit.approval}.`;
+      toQuote.firstChild.textContent = 'Quote this part ';
+      result.classList.remove('is-miss');
+    } else {
+      rt.textContent = 'Not in this sample. Send it anyway.';
+      toQuote.firstChild.textContent = 'Send it for a quote ';
+      result.classList.add('is-miss');
+    }
     result.hidden = false;
     result.style.animation = 'none'; result.offsetHeight; result.style.animation = '';
   });
   input.addEventListener('input', () => { if (search.classList.contains('is-error')) { search.classList.remove('is-error'); msg.textContent = ''; } });
-  $('[data-quote-from-search]').addEventListener('click', () => { $('#q-pn').value = input.value.trim().toUpperCase(); });
+  toQuote.addEventListener('click', () => {
+    $('#q-pn').value = rq.textContent;
+    $('#q-pl').value = lastHit ? lastHit.option : '';
+  });
+  const focusSearch = $('[data-focus-search]');
+  if (focusSearch) focusSearch.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' }); input.focus({ preventScroll: true }); });
 
   /* ---------- quote form validation ---------- */
   const form = $('[data-quote]'), done = $('[data-done]', form);
@@ -127,11 +157,14 @@
     const el = form.elements[n];
     el.addEventListener('blur', () => { if (el.value) validate(n); });
     el.addEventListener('input', () => { if (fieldOf(n).classList.contains('is-error')) validate(n); });
+    el.addEventListener('change', () => { if (fieldOf(n).classList.contains('is-error')) validate(n); });
   });
   form.addEventListener('submit', e => {
     e.preventDefault();
     const bad = Object.keys(checks).filter(n => !validate(n));
     if (bad.length) { form.elements[bad[0]].focus(); return; }
+    $('[data-done-pn]', done).textContent = form.elements.pn.value.trim().toUpperCase();
+    $('[data-done-pl]', done).textContent = form.elements.pl.value;
     $$('.field, .qform-foot', form).forEach(f => { f.hidden = true; });
     done.hidden = false;
     done.focus();
@@ -139,7 +172,7 @@
 
   /* ---------- quiet reveal for the bands below the part ---------- */
   if (still || !('IntersectionObserver' in window)) return;
-  const els = $$('.band .statement, .band .body, .band .rows, .gold-statement, .search, .engine-names, .process-wall, .year-num, .year-line, .careers-sites, .finale-media, .qform');
+  const els = $$('.band .statement, .band .body, .band .rows, .gold-statement, .engine-names, .process-wall, .year-num, .year-line, .careers-sites, .finale-media, .qform');
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   els.forEach(el => { el.classList.add('rv'); io.observe(el); });
 })();

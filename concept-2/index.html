@@ -8,11 +8,13 @@
 <meta name="description" content="Cadorath repairs Airbus and Bell helicopter parts and Rolls-Royce engines in Winnipeg and Lafayette. Airbus Helicopters D-Level, Rolls-Royce AMROC, Transport Canada DAO 15-C-01.">
 <link rel="preload" href="img/hero-as350-longline.jpg" as="image">
 <style>
-/* SF Pro is referenced from the viewer's system only (Apple licence: never redistributed). Manrope (OFL) is the self-hosted fallback. */
-@font-face{font-family:"CD";src:local("SF Pro Display Heavy"),local("SFProDisplay-Heavy");font-weight:800}
-@font-face{font-family:"CD";src:local("SF Pro Display Black"),local("SFProDisplay-Black");font-weight:900}
-@font-face{font-family:"CT";src:local("SF Pro Text"),local("SFProText-Regular");font-weight:400}
+/* SF Pro and SF Mono are referenced from the viewer's system only (Apple licence: never redistributed).
+   Manrope (OFL) is the self-hosted fallback for everyone else. */
+@font-face{font-family:"CD";src:local("SF Pro Display Regular"),local("SFProDisplay-Regular");font-weight:400}
+@font-face{font-family:"CD";src:local("SF Pro Display Medium"),local("SFProDisplay-Medium");font-weight:500}
+@font-face{font-family:"CT";src:local("SF Pro Text Regular"),local("SFProText-Regular"),local("SF Pro Text");font-weight:400}
 @font-face{font-family:"CT";src:local("SF Pro Text Medium"),local("SFProText-Medium");font-weight:500}
+@font-face{font-family:"CM";src:local("SF Mono Regular"),local("SFMono-Regular");font-weight:400}
 @font-face{font-family:"Manrope";src:url(fonts/Manrope-latin.woff2) format("woff2");font-weight:200 800;font-display:swap}
 
 :root{
@@ -28,6 +30,7 @@
   --m:40px;
   --fd:"CD","SF Pro Display",-apple-system,"Manrope",system-ui,sans-serif;
   --ft:"CT","SF Pro Text",-apple-system,"Manrope",system-ui,sans-serif;
+  --fm:"CM","SF Mono",ui-monospace,Menlo,Consolas,"DejaVu Sans Mono",monospace;   /* part numbers: unambiguous 0/O and 1/l */
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -36,16 +39,18 @@ body{font-family:var(--ft);font-weight:400;color:var(--ink);background:var(--whi
 body.locked{overflow:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button,input{font:inherit;color:inherit}
+button,input,textarea{font:inherit;color:inherit}
 button{background:none;border:0;cursor:pointer}
+[hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:4px}
 .skip{position:absolute;left:-9999px;top:8px;background:var(--white);color:var(--ink);padding:10px 16px;z-index:200;border-radius:40px}
 .skip:focus{left:8px}
-.d{font-family:var(--fd);font-weight:800;letter-spacing:-0.022em;line-height:.98}
-[hidden]{display:none!important}
+/* display: Medium for the H1, Regular for large statements (Chip: no heavy bold) */
+.d{font-family:var(--fd);font-weight:400;letter-spacing:-0.025em;line-height:1}
+.d5{font-weight:500}
+.pn{font-family:var(--fm);font-variant-numeric:slashed-zero;letter-spacing:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .nw{white-space:nowrap}
-br.m{display:none}
 br.dk{display:inline}
 
 /* one button shape for the whole site */
@@ -54,22 +59,19 @@ br.dk{display:inline}
 .pill:active{transform:scale(.97)}
 .pill--dark{background:var(--navy);color:var(--white)}
 .pill--dark:hover{background:var(--cobalt)}
-.pill--ghost{background:rgba(255,255,255,.14);color:var(--white);backdrop-filter:blur(8px)}
-.pill--ghost:hover{background:var(--white);color:var(--ink)}
 .arrow{display:inline-block;transition:transform .3s var(--ease)}
 a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
-.link{display:inline-flex;width:max-content;gap:8px;font-size:18px;border-bottom:1px solid currentColor;padding-bottom:2px;transition:color .2s}
+.link{display:inline-flex;width:max-content;gap:8px;font-size:18px;border-bottom:1px solid currentColor;padding-bottom:2px;transition:color .2s,opacity .2s}
 .link:hover{color:var(--cobalt)}
+.on-img .link:hover{color:var(--white);opacity:.75}
+a[href^="tel:"],a[href^="mailto:"]{border-bottom:1px solid currentColor}
 
-/* ---------- nav ---------- */
-.nav{position:absolute;inset:0 0 auto 0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:20px var(--m);color:var(--white)}
-.brand{display:flex;align-items:center;gap:12px;justify-self:start}
+/* ---------- header (never hides) ---------- */
+.nav{position:absolute;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:20px var(--m);color:var(--white)}
+.brand{display:flex;align-items:center;gap:12px}
 .brand svg{width:42px;height:22px}
-.brand b{font-family:var(--fd);font-weight:900;font-size:21px;letter-spacing:.01em}
-.nav ul{display:flex;gap:34px;list-style:none;font-size:15px}
-.nav ul a{opacity:.9;padding:10px 0;transition:opacity .2s}
-.nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px}
-.nav-r{justify-self:end;display:flex;align-items:center;gap:20px}
+.brand b{font-family:var(--fd);font-weight:500;font-size:21px;letter-spacing:.06em}
+.nav-r{display:flex;align-items:center;gap:20px}
 .nav .pill{height:42px;font-size:15px;padding:0 20px}
 .menu-btn{font-size:15px;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 4px}
 .menu-btn i{display:grid;gap:5px}
@@ -81,34 +83,60 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 .ov-top{display:flex;justify-content:space-between;align-items:center}
 .ov-body{display:grid;grid-template-columns:7fr 5fr;gap:var(--m);align-items:end;padding:56px 0 32px}
 .ov-links{list-style:none}
-.ov-links a{display:inline-flex;align-items:baseline;gap:18px;font-family:var(--fd);font-weight:800;letter-spacing:-0.022em;line-height:1.08;font-size:clamp(40px,5.4vw,80px);opacity:.92;transform:translateY(16px);transition:opacity .3s,transform .5s var(--ease),color .2s}
+.ov-links a{display:inline-flex;font-family:var(--fd);font-weight:400;letter-spacing:-0.025em;line-height:1.1;font-size:clamp(40px,5.4vw,80px);opacity:.9;transform:translateY(16px);transition:opacity .3s,transform .5s var(--ease),color .2s}
 .overlay.open .ov-links a{transform:none}
 .ov-links li:nth-child(2) a{transition-delay:.03s}.ov-links li:nth-child(3) a{transition-delay:.06s}.ov-links li:nth-child(4) a{transition-delay:.09s}.ov-links li:nth-child(5) a{transition-delay:.12s}.ov-links li:nth-child(6) a{transition-delay:.15s}
 .ov-links a:hover,.ov-links a:focus-visible{opacity:1;color:var(--sky)}
-.ov-side{font-size:16px;line-height:1.6;display:grid;gap:28px;padding-bottom:12px}
-.ov-side h2{font-size:14px;font-weight:400;opacity:.62;margin-bottom:6px}
+.ov-side{font-size:16px;line-height:1.6;display:grid;gap:26px;padding-bottom:12px}
+.ov-side h2{font-size:14px;font-weight:400;opacity:.62;margin-bottom:4px}
 .ov-side a{border-bottom:1px solid rgba(255,255,255,.4)}
 .ov-side a:hover{border-color:#fff}
 .ov-foot{font-size:14px;opacity:.62}
 
 /* ---------- hero ---------- */
-.hero{position:relative;height:100svh;min-height:720px;max-height:980px;overflow:hidden;background:var(--navy);color:var(--white);touch-action:pan-y}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--navy);color:var(--white);padding:120px var(--m) 0}
+.slides{position:absolute;inset:0;touch-action:pan-y}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .slide.on{opacity:1}
 .slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 9s linear}
 .slide.on img{transform:scale(1)}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,10,30,.7) 0,rgba(0,10,30,.54) 30%,rgba(0,10,30,.16) 48%,rgba(0,10,30,0) 62%);pointer-events:none}
-.hero-copy{position:absolute;z-index:3;left:var(--m);right:var(--m);bottom:120px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
-.hero h1{font-size:clamp(34px,4.45vw,64px);text-wrap:balance}
-.hero-foot{position:absolute;z-index:3;left:var(--m);right:var(--m);bottom:28px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
-.cap{opacity:.9;transition:opacity .5s}
-.ctl{display:flex;align-items:center;gap:4px}
-.tick{width:44px;height:44px;display:grid;place-items:center}
-.tick span{display:block;width:30px;height:2px;background:rgba(255,255,255,.32);position:relative;overflow:hidden;border-radius:2px}
+.dim{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 85% 95%,rgba(0,10,30,.62),rgba(0,10,30,.25) 60%,rgba(0,10,30,.1));opacity:0;transition:opacity .5s ease;pointer-events:none}
+.hero.asked .dim{opacity:1}
+.slides::after{z-index:1;content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,10,30,.74) 0,rgba(0,10,30,.56) 30%,rgba(0,10,30,.16) 50%,rgba(0,10,30,0) 64%);pointer-events:none}
+.hero-main{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px var(--m);align-items:end}
+.hero h1{grid-column:1 / -1;font-size:clamp(36px,4.6vw,66px);text-wrap:balance}
+
+/* the part-number check: type on the image, no card */
+.check{margin-top:8px;max-width:560px}
+.check label{display:block;font-size:14px;opacity:.85;margin-bottom:6px}
+.field{display:flex;align-items:center;gap:16px;border-bottom:1.5px solid rgba(255,255,255,.7);transition:border-color .2s}
+.field:focus-within{border-color:#fff}
+.field.bad{border-color:#FFB4AB}
+.field input{flex:1;min-width:0;height:56px;border:0;background:none;outline:none;color:#fff;font-size:24px}
+.field input::placeholder{color:rgba(255,255,255,.62)}
+.field button{font-size:16px;font-weight:500;display:inline-flex;gap:8px;align-items:center;min-height:44px;padding:0 4px;white-space:nowrap}
+.check .msg{font-size:14px;min-height:22px;margin-top:8px;color:#FFD2CC;font-weight:500}
+.check .aog{font-size:14px;opacity:.88}
+.check .aog a{white-space:nowrap}
+
+.result{position:absolute;right:0;bottom:0;width:calc((100% - var(--m)) * 5 / 12);max-width:480px;padding-bottom:6px;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s var(--ease)}
+.result.show{opacity:1;transform:none}
+.result .tag{font-size:13px;opacity:.75;margin-bottom:12px}
+.result .read{font-size:14px;opacity:.8;margin-bottom:10px}
+.result h2{font-family:var(--fd);font-weight:500;letter-spacing:-0.02em;font-size:32px;line-height:1.08}
+.result p{font-size:17px;margin-top:10px;opacity:.92}
+.result .acts{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:20px}
+
+.hero-foot{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:44px;padding:14px 0 18px;border-top:1px solid rgba(255,255,255,.28);font-size:13px}
+.strip{opacity:.86;line-height:1.5}
+.strip span{white-space:nowrap}
+.strip span+span::before{content:"/";opacity:.5;margin:0 10px}
+.ctl{display:flex;align-items:center;gap:2px;flex:none}
+.tick{width:40px;height:44px;display:grid;place-items:center}
+.tick span{display:block;width:26px;height:2px;background:rgba(255,255,255,.32);position:relative;overflow:hidden;border-radius:2px}
 .tick span b{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(0)}
-.tick.done span b{transform:scaleX(1)}
 .tick:hover span{background:rgba(255,255,255,.6)}
-.pause{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;margin-left:8px;border:1px solid rgba(255,255,255,.45);transition:background .2s,border-color .2s}
+.pause{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;margin-left:6px;border:1px solid rgba(255,255,255,.45);transition:background .2s,border-color .2s}
 .pause:hover{background:rgba(255,255,255,.14);border-color:#fff}
 .pause svg{width:12px;height:12px;fill:#fff}
 .pause .pl{display:none}.pause.paused .pl{display:block}.pause.paused .pa{display:none}
@@ -116,7 +144,6 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 /* ---------- statement (60/40) ---------- */
 .statement{display:grid;grid-template-columns:7fr 5fr;gap:var(--m);align-items:end;padding:160px var(--m)}
 .statement h2{font-size:clamp(40px,4.9vw,72px);text-wrap:balance}
-.statement .copy{padding-bottom:6px}
 .statement p{font-size:20px;line-height:1.55;max-width:30em}
 .statement .link{margin-top:24px}
 
@@ -131,11 +158,11 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 
 /* ---------- audience rows (Oath) ---------- */
 .rows{padding:160px var(--m) 140px}
-.rows h2{font-size:32px;margin-bottom:40px}
-.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;border-top:1px solid var(--rule);padding:36px 0 40px;transition:background .3s}
+.rows h2{font-size:28px;font-weight:500;margin-bottom:40px;letter-spacing:-0.015em}
+.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;border-top:1px solid var(--rule);padding:34px 0 38px}
 .row:last-child{border-bottom:1px solid var(--rule)}
-.row h3{font-size:clamp(52px,7.8vw,120px);transition:color .3s,transform .5s var(--ease)}
-.row p{font-size:20px;color:var(--mute);margin-top:14px;max-width:34em;transition:color .3s}
+.row h3{font-size:clamp(44px,5.8vw,84px);transition:color .3s,transform .5s var(--ease)}
+.row p{font-size:19px;color:var(--mute);margin-top:12px;max-width:34em;transition:color .3s}
 .row svg{width:96px;height:40px;transition:transform .5s var(--ease)}
 .row:hover h3,.row:focus-visible h3{color:var(--cobalt);transform:translateX(12px)}
 .row:hover p{color:var(--ink)}
@@ -144,17 +171,18 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 
 /* ---------- approvals: hairline list ---------- */
 .approvals{display:grid;grid-template-columns:5fr 7fr;gap:var(--m);padding:40px var(--m) 160px}
-.approvals h2{font-size:clamp(36px,3.9vw,56px);text-wrap:balance;position:sticky;top:120px;align-self:start}
+.ap-head{position:sticky;top:96px;align-self:start}   /* heading and lede travel together: no collision */
+.approvals h2{font-size:clamp(36px,3.9vw,56px);text-wrap:balance}
 .approvals .lede{font-size:18px;color:var(--mute);margin-top:24px;max-width:24em}
 .ap-list{list-style:none;border-top:1px solid var(--rule)}
 .ap-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;padding:28px 0 30px;border-bottom:1px solid var(--rule)}
-.ap-list strong{font-weight:400;font-size:clamp(24px,2.2vw,32px);line-height:1.15;letter-spacing:-0.01em}
+.ap-list strong{font-weight:400;font-size:clamp(24px,2.2vw,32px);line-height:1.15;letter-spacing:-0.01em;font-family:var(--fd)}
 .ap-list li > span{font-size:17px;color:var(--mute);padding-top:6px}
 .approvals .link{margin-top:32px}
 
 /* ---------- careers band ---------- */
 .careers{position:relative;height:88vh;min-height:620px;overflow:hidden;color:var(--white);background:var(--navy)}
-.careers img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.careers img{width:100%;height:100%;object-fit:cover}
 .careers::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,10,30,.7) 0,rgba(0,10,30,.25) 45%,rgba(0,10,30,0) 70%);pointer-events:none}
 .careers .c{position:absolute;z-index:2;left:var(--m);right:var(--m);bottom:72px;display:grid;grid-template-columns:7fr 5fr;gap:var(--m);align-items:end}
 .careers h2{font-size:clamp(40px,4.9vw,72px);text-wrap:balance}
@@ -162,56 +190,50 @@ a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 
 /* ---------- news ---------- */
 .news{padding:160px var(--m)}
-.news h2{font-size:32px;margin-bottom:24px}
+.news h2{font-size:28px;font-weight:500;margin-bottom:24px;letter-spacing:-0.015em}
 .news a{display:grid;grid-template-columns:200px 1fr auto;gap:24px;align-items:baseline;padding:28px 0;border-top:1px solid var(--rule);font-size:24px;line-height:1.3}
 .news a:last-child{border-bottom:1px solid var(--rule)}
 .news time{font-size:16px;color:var(--mute)}
 .news a:hover .t{color:var(--cobalt)}
 
-/* ---------- closing: part-number check ---------- */
-.closing{position:relative;min-height:92vh;overflow:hidden;color:var(--navy);background:#BCD6E2}
-.closing>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
-.closing .c{position:relative;z-index:2;padding:96px var(--m);max-width:760px}
-.closing h2{font-size:clamp(40px,4.9vw,72px);text-wrap:balance}
-.closing .sub{font-size:20px;margin-top:16px}
-.ask{display:flex;align-items:center;margin-top:28px;width:min(580px,100%);background:var(--white);border-radius:40px;padding:4px;box-shadow:0 0 0 2px transparent;transition:box-shadow .2s}
-.ask:focus-within{box-shadow:0 0 0 2px var(--navy)}
-.ask.bad{box-shadow:0 0 0 2px var(--err)}
-.ask input{flex:1;min-width:0;height:48px;border:0;background:none;padding:0 20px;font-size:17px;color:var(--ink);font-variant-numeric:slashed-zero;outline:none}
-.ask input::placeholder{color:var(--mute)}
-.msg{font-size:15px;margin-top:10px;min-height:22px;color:var(--err);font-weight:500}
-.result{margin-top:8px;width:min(580px,100%);background:var(--white);color:var(--ink);border-radius:24px;padding:28px;display:none}
-.result.show{display:block;animation:rise .45s var(--ease)}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.result .tag{font-size:13px;color:var(--mute);margin-bottom:10px}
-.result h3{font-family:var(--fd);font-weight:800;letter-spacing:-0.015em;font-size:26px;line-height:1.1}
-.result .q{font-variant-numeric:slashed-zero}
-.result p{font-size:16px;margin-top:10px;color:var(--ink)}
-.result .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-.qf{display:none;margin-top:20px;gap:12px}
-.qf.show{display:grid}
-.qf label{font-size:14px;color:var(--mute);display:grid;gap:6px}
-.qf input{height:46px;border:1px solid var(--rule);border-radius:12px;padding:0 14px;font-size:16px;background:#fff;outline:none;transition:border-color .2s}
-.qf input:focus{border-color:var(--navy)}
+/* ---------- quote: a form set on the dusk sky ---------- */
+.quote{position:relative;min-height:100vh;overflow:hidden;color:var(--navy);background:#BCD6E2}
+.quote>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.quote .c{position:relative;z-index:2;display:grid;grid-template-columns:5fr 6fr;gap:var(--m);padding:104px var(--m) 120px;align-items:start}
+.quote h2{font-size:clamp(40px,4.9vw,72px);text-wrap:balance}
+.quote .sub{font-size:19px;margin-top:20px;max-width:24em}
+.quote .contact{font-size:17px;margin-top:28px;line-height:1.8}
+.qf{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;max-width:640px}
+.qf .full{grid-column:1 / -1}
+.qf label{display:grid;gap:4px;font-size:14px}
+.qf input,.qf textarea{border:0;border-bottom:1.5px solid rgba(0,22,70,.5);background:none;height:46px;font-size:19px;outline:none;color:var(--navy);transition:border-color .2s;border-radius:0}
+.qf textarea{height:72px;resize:vertical;padding-top:10px}
+.qf input:focus,.qf textarea:focus{border-color:var(--navy)}
 .qf input[aria-invalid=true]{border-color:var(--err)}
+.qf input::placeholder{color:rgba(0,22,70,.55)}
 .qf .e{color:var(--err);font-size:13px;min-height:18px;font-weight:500}
-.done{display:none;margin-top:16px;font-size:16px}
-.done.show{display:block}
+.qf .row2{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:8px}
+.qf .aog{font-size:15px}
+.done{max-width:640px}
+.done h3{font-family:var(--fd);font-weight:500;font-size:36px;letter-spacing:-0.02em;line-height:1.08}
+.done p{font-size:18px;margin-top:14px;line-height:1.6}
 
 /* ---------- footer ---------- */
 footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflow:hidden}
-.f-top{display:grid;grid-template-columns:5fr 2fr 2fr 3fr;gap:24px}
-.f-top .sign{font-family:var(--fd);font-weight:800;font-size:40px;letter-spacing:-0.02em;line-height:1}
+.f-top{display:grid;grid-template-columns:4fr 2fr 2fr 4fr;gap:24px}
+.f-top .sign{font-family:var(--fd);font-weight:400;font-size:40px;letter-spacing:-0.025em;line-height:1.02}
 .f-top h3{font-size:14px;font-weight:400;opacity:.66;margin-bottom:12px}
 .f-top ul{list-style:none;font-size:16px}
 .f-top li a{display:inline-block;padding:5px 0;transition:opacity .2s}
 .f-top li a:hover{opacity:.7;text-decoration:underline;text-underline-offset:4px}
 .f-top address{font-style:normal;font-size:16px;line-height:1.6}
 .f-top address + address{margin-top:16px}
+.f-top a[href^="tel:"],.f-top a[href^="mailto:"]{border-color:rgba(255,255,255,.45)}
 .f-small{display:flex;justify-content:space-between;gap:24px;margin-top:80px;font-size:14px;opacity:.66}
-.wordmark{font-family:var(--fd);font-weight:900;letter-spacing:-0.012em;line-height:1;white-space:nowrap;font-size:17.5vw;margin:calc(56px - .155em) 0 0;padding-bottom:.04em;user-select:none;width:max-content}
-.wordmark span.in{display:block;margin-bottom:-.145em}
-.wordmark .kr{display:inline;margin-right:.035em}   /* opens the R-A pair, which touches in SF Pro Display Black */
+.wordmark{font-family:var(--fd);font-weight:500;letter-spacing:-0.02em;line-height:1;white-space:nowrap;font-size:17.5vw;margin:calc(56px - .16em) 0 0;padding-bottom:.04em;user-select:none;width:max-content}
+.wordmark .in{display:block;margin-bottom:-.15em}
+.wordmark .kr{margin-right:.02em}   /* R-A pair, opened by hand */
+.wordmark .ka{margin-right:-.01em}  /* A-T pair, closed by hand */
 
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s var(--ease)}
@@ -219,29 +241,36 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
-  .nav ul{display:none}
-  .nav{grid-template-columns:auto 1fr auto}
-  .statement,.approvals,.careers .c{grid-template-columns:1fr}
-  .approvals h2{position:static}
+  .hero-main,.statement,.approvals,.careers .c,.quote .c{grid-template-columns:1fr}
+  .result{position:static;width:auto;max-width:560px}
+  .ap-head{position:static}
   .ov-body{grid-template-columns:1fr}
+  .hero-foot{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:760px){
   :root{--m:20px}
-  br.m{display:inline}
   br.dk{display:none}
-  .nav{padding:14px var(--m)}
-  .brand svg{width:34px;height:18px}.brand b{font-size:18px}
-  .nav .pill{display:none}
-  .overlay{padding:14px var(--m) 28px}
+  .nav{padding:12px var(--m)}
+  .brand svg{width:34px;height:18px}.brand b{font-size:17px}
+  .nav-r{gap:12px}
+  .nav .pill{height:38px;padding:0 14px;font-size:14px}
+  .menu-btn{font-size:0;gap:0;width:44px;justify-content:center}
+  .menu-btn i::before,.menu-btn i::after{width:22px}
+  .overlay .menu-btn{font-size:15px;width:auto}
+  .overlay{padding:12px var(--m) 28px}
   .ov-body{padding:40px 0 24px;align-items:start}
   .ov-links a{font-size:42px}
-  .hero{min-height:640px}
+  .hero{padding-top:44svh;justify-content:flex-start}
+  .slides{height:100svh;bottom:auto}
   .hero .slide img{object-position:32% 0}
-  .hero-copy{bottom:100px;flex-direction:column;align-items:flex-start;gap:24px}
-  .hero h1{font-size:32px;line-height:1.02}
-  .hero-foot{bottom:16px;font-size:13px}
-  .cap{max-width:58%}
-  .tick{width:30px}.tick span{width:20px}
+  .hero h1{font-size:34px;line-height:1.04}
+  .check{margin-top:24px}
+  .field input{font-size:20px;height:52px}
+  .result{margin-top:4px}
+  .result h2{font-size:26px}
+  .hero-foot{margin-top:28px;gap:6px;padding-bottom:10px}
+  .strip{font-size:12px}
+  .strip span{white-space:normal}
   .statement{padding:104px var(--m) 96px;gap:28px}
   .statement h2{font-size:38px}
   .statement p{font-size:18px}
@@ -250,9 +279,9 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   .band::after{background:linear-gradient(180deg,rgba(0,10,30,.5) 0,rgba(0,10,30,0) 40%)}
   .band h2{font-size:40px}
   .rows{padding:104px var(--m) 96px}
-  .rows h2{font-size:26px;margin-bottom:24px}
+  .rows h2{font-size:24px;margin-bottom:24px}
   .row{gap:16px;padding:24px 0 28px}
-  .row h3{font-size:46px}
+  .row h3{font-size:42px}
   .row p{font-size:17px;margin-top:10px}
   .row svg{width:44px;height:20px}
   .approvals{padding:0 var(--m) 104px;gap:32px}
@@ -260,29 +289,31 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   .ap-list li{grid-template-columns:1fr;gap:6px;padding:20px 0 22px}
   .ap-list strong{font-size:24px}
   .ap-list li > span{font-size:16px;padding:0}
-  .careers{height:auto;min-height:0;aspect-ratio:auto}
+  .careers{height:auto;min-height:0}
   .careers img{height:62vh;min-height:420px;object-position:46% 50%}
   .careers::after{display:none}
   .careers .c{position:static;padding:32px var(--m) 48px;gap:16px}
   .careers h2{font-size:36px}
   .careers p{font-size:17px}
   .news{padding:104px var(--m)}
-  .news h2{font-size:26px}
+  .news h2{font-size:24px}
   .news a{grid-template-columns:1fr auto;font-size:19px;padding:20px 0}
   .news time{grid-column:1 / -1}
-  .closing{min-height:0}
-  .closing>img{position:static;height:300px;object-position:30% 70%}
-  .closing{background:var(--navy);color:var(--white)}
-  .closing .c{padding:40px var(--m) 64px}
-  .closing h2{font-size:38px}
-  .closing .sub{font-size:17px}
-  .ask .pill{padding:0 18px;font-size:15px}
-  .ask input{padding:0 14px;font-size:16px}
-  .msg{color:#FFB4AB}
-  .result{padding:22px}
+  .quote{min-height:0;background:var(--navy);color:var(--white)}
+  .quote>img{position:static;height:280px;object-position:30% 70%}
+  .quote .c{padding:40px var(--m) 64px;gap:36px}
+  .quote h2{font-size:38px}
+  .quote .sub{font-size:17px}
+  .qf{grid-template-columns:1fr;gap:18px}
+  .qf input,.qf textarea{color:#fff;border-color:rgba(255,255,255,.55)}
+  .qf input:focus,.qf textarea:focus{border-color:#fff}
+  .qf input::placeholder{color:rgba(255,255,255,.55)}
+  .qf .e{color:#FFD2CC}
+  .quote .pill--dark{background:#fff;color:var(--ink)}
   footer{padding-top:72px}
   .f-top{grid-template-columns:1fr 1fr;row-gap:40px}
   .f-top .sign{grid-column:1 / -1;font-size:34px}
+  .f-top .visit{grid-column:1 / -1}
   .f-small{flex-direction:column;margin-top:56px;gap:6px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -299,20 +330,14 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 248.3 127.4"><path d="M247.601,87.784C235.85,51.636 208.251,22.642 172.993,9.006C140.522,20.048 117.152,50.772 117.152,86.976C117.152,101.446 120.897,115.038 127.453,126.857C130.659,91.84 160.095,64.408 195.95,64.408C216.537,64.408 234.993,73.458 247.601,87.784Z"/><path d="M171.874,8.581C136.294,-4.788 96.412,-1.307 63.758,17.743C52.13,50.006 61.562,87.438 89.855,110.024C101.169,119.056 114.126,124.607 127.451,126.859C102.086,102.503 99.013,62.384 121.38,34.366C134.222,18.277 152.813,9.498 171.874,8.581Z"/><path d="M51.379,73.898C46.866,53.816 51.553,33.82 62.729,18.351C25.827,40.406 1.119,80.751 1.119,126.866L127.453,126.858C88.399,126.858 58.896,107.348 51.379,73.898Z"/></symbol>
-  <symbol id="long-arrow" viewBox="0 0 96 40"><path d="M0 20h92M74 2l18 18-18 18" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="long-arrow" viewBox="0 0 96 40"><path d="M0 20h92M74 2l18 18-18 18" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
 </svg>
 
 <header class="nav">
   <a class="brand" href="./" aria-label="Cadorath home"><svg viewBox="0 0 248.3 127.4" fill="currentColor" aria-hidden="true"><use href="#mark"/></svg><b>CADORATH</b></a>
-  <nav aria-label="Main"><ul>
-    <li><a href="stub.html?p=repair">Repair</a></li>
-    <li><a href="stub.html?p=engines">Engines</a></li>
-    <li><a href="#approvals">Approvals</a></li>
-    <li><a href="#careers">Careers</a></li>
-  </ul></nav>
   <div class="nav-r">
-    <a class="pill" href="#quote">Request a quote</a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i>Menu</button>
+    <a class="pill" href="#quote" data-quote>Request a quote</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i aria-hidden="true"></i>Menu</button>
   </div>
 </header>
 
@@ -328,13 +353,15 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
       <li><a href="stub.html?p=processes">Special processes</a></li>
       <li><a href="#approvals" data-close>Approvals</a></li>
       <li><a href="#careers" data-close>Careers</a></li>
-      <li><a href="stub.html?p=about">About</a></li>
+      <li><a href="#quote" data-close data-quote>Request a quote</a></li>
     </ul>
     <div class="ov-side">
-      <div><h2>Have a part number?</h2><a href="#quote" data-close>Check it against our repair lists</a></div>
+      <div><h2>Call</h2><a href="tel:+12049851317">204.985.1317</a>, toll free <a href="tel:+18004707069">1.800.470.7069</a></div>
+      <div><h2>Email</h2><a href="mailto:info@cadorath.com">info@cadorath.com</a></div>
+      <div><h2>Aircraft on ground?</h2>Call <a href="tel:+18004707069">1.800.470.7069</a></div>
       <div><h2>Winnipeg</h2>2070 Logan Ave, Winnipeg, MB <span class="nw">R2R 0H9</span></div>
       <div><h2>Lafayette</h2>210 Stanton St, Broussard, LA 70518</div>
-      <div><h2>More</h2><a href="stub.html?p=news">News</a>, <a href="stub.html?p=defence">Defence</a>, <a href="stub.html?p=uniflyte">Uniflyte agriculture</a></div>
+      <div><h2>More</h2><a href="stub.html?p=about">About</a>, <a href="stub.html?p=news">News</a>, <a href="stub.html?p=defence">Defence</a>, <a href="stub.html?p=uniflyte">Uniflyte agriculture</a></div>
     </div>
   </div>
   <p class="ov-foot">Transport Canada AMO 86-91. FAA 04YR302Y. EASA 145.7017.</p>
@@ -342,19 +369,40 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 
 <main id="main">
 
-<section class="hero" aria-roledescription="carousel" aria-label="Aircraft back in service">
-  <div class="slides">
-    <figure class="slide on" role="group" aria-roledescription="slide" aria-label="1 of 3" data-cap="Airbus AS350, on our repair list."><img src="img/hero-as350-longline.jpg" alt="An Airbus AS350 carries a load on a long line beside a snow peak." width="2880" height="1799"></figure>
-    <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3" data-cap="Airbus H125. D-Level repair centre."><img src="img/hero-h125-glacier.jpg" alt="An Airbus H125 lifts off a glacier, mountains behind." width="2880" height="1800"></figure>
-    <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3" data-cap="Bell 204 and 205, on our repair list."><img src="img/hero-bell-bucket.jpg" alt="A Bell utility helicopter releases water from a bucket over a hillside." width="2880" height="1800"></figure>
+<section class="hero" aria-label="Find your part">
+  <div class="slides" aria-roledescription="carousel" aria-label="Aircraft at work">
+    <figure class="slide on" role="group" aria-roledescription="slide" aria-label="1 of 3: Airbus AS350"><img src="img/hero-as350-longline.jpg" alt="An Airbus AS350 carries a load on a long line beside a snow peak." width="2880" height="1799"></figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3: Airbus H125"><img src="img/hero-h125-glacier.jpg" alt="An Airbus H125 lifts off a glacier, mountains behind." width="2880" height="1800"></figure>
+    <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3: Bell utility helicopter"><img src="img/hero-bell-bucket.jpg" alt="A Bell utility helicopter releases water from a bucket over a hillside." width="2880" height="1800"></figure>
+    <div class="dim"></div>
   </div>
-  <div class="hero-copy">
-    <h1 class="d">When the manual says scrap,<br class="dk"> our engineers write the repair.</h1>
-    <a class="pill pill--ghost" href="#quote">Check a part number <span class="arrow" aria-hidden="true">→</span></a>
+
+  <div class="hero-main">
+      <h1 class="d d5">When the manual says scrap,<br class="dk"> our engineers write the repair.</h1>
+      <form class="check" id="check" novalidate role="search">
+        <label class="sr" for="pn">Check a part number</label>
+        <div class="field">
+          <input id="pn" name="pn" class="pn" placeholder="e.g. 350A331090" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40" aria-describedby="pn-msg">
+          <button type="submit">Check <span class="arrow" aria-hidden="true">→</span></button>
+        </div>
+        <p class="msg" id="pn-msg" role="alert"></p>
+        <p class="aog">Aircraft on ground? Call <a href="tel:+18004707069">1.800.470.7069</a></p>
+      </form>
+    <div class="result on-img" id="result" aria-live="polite" hidden>
+      <p class="tag">Sample data. This mockup checks a few published prefixes and platform names only.</p>
+      <p class="read" id="r-read" hidden></p>
+      <h2 id="r-h"></h2>
+      <p id="r-p"></p>
+      <div class="acts">
+        <a class="pill" href="#quote" id="r-quote">Request a quote <span class="arrow" aria-hidden="true">→</span></a>
+        <button class="link" type="button" id="r-reset">Check another</button>
+      </div>
+    </div>
   </div>
+
   <div class="hero-foot">
-    <p class="cap" aria-live="polite">Airbus AS350, on our repair list.</p>
-    <div class="ctl">
+    <p class="strip"><span>Transport Canada AMO 86-91, DAO 15-C-01</span><span>FAA 04YR302Y</span><span>EASA 145.7017</span><span>Airbus D-Level</span><span>Rolls-Royce AMROC</span></p>
+    <div class="ctl" role="group" aria-label="Slideshow controls">
       <button class="tick" aria-label="Show slide 1"><span><b></b></span></button>
       <button class="tick" aria-label="Show slide 2"><span><b></b></span></button>
       <button class="tick" aria-label="Show slide 3"><span><b></b></span></button>
@@ -365,7 +413,7 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 
 <section class="statement" aria-labelledby="st-h">
   <h2 id="st-h" class="d rv">More than a thousand repairs, approved by Transport Canada.</h2>
-  <div class="copy rv">
+  <div class="rv">
     <p>They cover rotor wing aircraft and engines. Since 2015 we have held Transport Canada design delegation <span class="nw">DAO 15-C-01</span>, so a new repair can be designed and approved here. Plating, thermal spray, brazing, machining and inspection all run in our own shops.</p>
     <a class="link" href="stub.html?p=engineering">How a repair gets approved <span class="arrow" aria-hidden="true">→</span></a>
   </div>
@@ -396,7 +444,7 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
 </section>
 
 <section class="approvals" id="approvals" aria-labelledby="ap-h">
-  <div>
+  <div class="ap-head">
     <h2 id="ap-h" class="d rv">Approved by the OEMs and the regulators.</h2>
     <p class="lede rv">The certificates behind each one are published on our site.</p>
   </div>
@@ -430,31 +478,30 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   <a href="stub.html?p=news-lafayette"><time datetime="2025-03-12">March 2025</time><span class="t">Lafayette expansion doubles the facility</span><span class="arrow" aria-hidden="true">→</span></a>
 </section>
 
-<section class="closing" id="quote" aria-labelledby="close-h">
+<section class="quote" id="quote" aria-labelledby="q-h">
   <img src="img/closing-dusk.jpg" alt="A light helicopter flies low over snow at dusk." width="2880" height="1620" loading="lazy">
   <div class="c">
-    <h2 id="close-h" class="d">Get the aircraft back in service.</h2>
-    <p class="sub">Start with a part number or an aircraft model.</p>
-    <form class="ask" id="ask" novalidate>
-      <label class="sr" for="pn">Part number or aircraft model</label>
-      <input id="pn" name="pn" placeholder="Part number or model" autocomplete="off" spellcheck="false" aria-describedby="pn-msg" maxlength="40">
-      <button class="pill pill--dark" type="submit">Check <span class="arrow" aria-hidden="true">→</span></button>
-    </form>
-    <p class="msg" id="pn-msg" role="alert"></p>
-    <div class="result" id="result" aria-live="polite">
-      <p class="tag">Sample result. This mockup does not look anything up.</p>
-      <h3 id="r-h"></h3>
-      <p id="r-p"></p>
-      <div class="acts">
-        <button class="pill pill--dark" type="button" id="r-quote">Request a quote <span class="arrow" aria-hidden="true">→</span></button>
-        <button class="link" type="button" id="r-reset">Check another</button>
-      </div>
+    <div>
+      <h2 id="q-h" class="d">Get the aircraft back in service.</h2>
+      <p class="sub">Tell us the part. We reply with whether we can repair it and what it takes.</p>
+      <p class="contact">Call <a href="tel:+12049851317">204.985.1317</a> or toll free <a href="tel:+18004707069">1.800.470.7069</a><br>Email <a href="mailto:info@cadorath.com">info@cadorath.com</a></p>
+    </div>
+    <div>
       <form class="qf" id="qf" novalidate>
+        <label class="full">Part number or aircraft model<input id="qp" name="part" class="pn" placeholder="e.g. 350A331090" autocomplete="off" spellcheck="false" maxlength="40"><span class="e" id="qp-e"></span></label>
         <label>Name<input id="qn" name="name" autocomplete="name"><span class="e" id="qn-e"></span></label>
         <label>Work email<input id="qe" name="email" type="email" autocomplete="email"><span class="e" id="qe-e"></span></label>
-        <button class="pill pill--dark" type="submit">Send request <span class="arrow" aria-hidden="true">→</span></button>
+        <label class="full">Anything we should know (optional)<textarea id="qm" name="note" rows="2"></textarea></label>
+        <div class="row2">
+          <button class="pill pill--dark" type="submit">Send request <span class="arrow" aria-hidden="true">→</span></button>
+          <p class="aog">Aircraft on ground? Call <a href="tel:+18004707069">1.800.470.7069</a></p>
+        </div>
       </form>
-      <p class="done" id="done" role="status"></p>
+      <div class="done" id="done" role="status" tabindex="-1" hidden>
+        <h3>Request ready.</h3>
+        <p id="done-p"></p>
+        <p>This is a demo: nothing was sent. To reach the team now, call <a href="tel:+12049851317">204.985.1317</a>, toll free <a href="tel:+18004707069">1.800.470.7069</a>, or email <a href="mailto:info@cadorath.com">info@cadorath.com</a>.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -466,19 +513,20 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
     <p class="sign">Family owned<br>since 1954.</p>
     <div><h3>Repair</h3><ul><li><a href="stub.html?p=airbus">Airbus Helicopters</a></li><li><a href="stub.html?p=bell">Bell</a></li><li><a href="stub.html?p=rolls-royce">Rolls-Royce</a></li><li><a href="stub.html?p=honeywell">Honeywell</a></li></ul></div>
     <div><h3>Company</h3><ul><li><a href="stub.html?p=about">About</a></li><li><a href="#careers">Careers</a></li><li><a href="stub.html?p=news">News</a></li><li><a href="stub.html?p=defence">Defence</a></li><li><a href="stub.html?p=uniflyte">Uniflyte agriculture</a></li></ul></div>
-    <div><h3>Visit</h3>
-      <address>2070 Logan Ave<br>Winnipeg, MB <span class="nw">R2R 0H9</span></address>
-      <address>210 Stanton St<br>Broussard, LA 70518</address>
+    <div class="visit"><h3>Contact</h3>
+      <address><a href="tel:+12049851317">204.985.1317</a><br>Toll free <a href="tel:+18004707069">1.800.470.7069</a><br><a href="mailto:info@cadorath.com">info@cadorath.com</a></address>
+      <address>2070 Logan Ave, Winnipeg, MB <span class="nw">R2R 0H9</span><br>210 Stanton St, Broussard, LA 70518</address>
     </div>
   </div>
   <div class="f-small"><span>Transport Canada AMO 86-91. FAA 04YR302Y. EASA 145.7017. ISO 9001:2015.</span><span>Winnipeg, Manitoba. Lafayette, Louisiana.</span></div>
-  <p class="wordmark" aria-hidden="true"><span class="in">CADO<span class="kr">R</span>ATH</span></p>
+  <p class="wordmark" aria-hidden="true"><span class="in">CADO<span class="kr">R</span><span class="ka">A</span>TH</span></p>
 </footer>
 
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   /* ---------- menu overlay ---------- */
   const menu = $('#menu'), openBtn = $('.nav .menu-btn');
@@ -495,7 +543,7 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   addEventListener('keydown', e => {
     if (!menu.classList.contains('open')) return;
     if (e.key === 'Escape') setMenu(false);
-    if (e.key === 'Tab') {                       // keep focus inside the overlay
+    if (e.key === 'Tab') {
       const f = [...menu.querySelectorAll('a,button')]; const first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -503,15 +551,14 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   });
 
   /* ---------- hero carousel ---------- */
-  const hero = $('.hero'), slides = $$('.slide'), ticks = $$('.tick'), cap = $('.cap'), pauseBtn = $('.pause');
+  const hero = $('.hero'), slidesEl = $('.slides'), slides = $$('.slide'), ticks = $$('.tick'), pauseBtn = $('.pause');
   const DUR = 7000;
-  let i = 0, t0 = performance.now(), elapsed = 0, paused = reduce;
+  let i = 0, t0 = performance.now(), elapsed = 0, paused = reduce, held = false;
   const paint = p => ticks.forEach((t, n) => { t.querySelector('b').style.transform = `scaleX(${n < i ? 1 : n === i ? p : 0})`; });
   const show = n => {
     n = (n + slides.length) % slides.length;
     slides.forEach((s, k) => { s.classList.toggle('on', k === n); s.setAttribute('aria-hidden', k !== n); });
     i = n; t0 = performance.now(); elapsed = 0;
-    cap.style.opacity = 0; setTimeout(() => { cap.textContent = slides[i].dataset.cap; cap.style.opacity = ''; }, 250);
     ticks.forEach((t, k) => t.setAttribute('aria-current', k === n));
     paint(paused ? 1 : 0);
   };
@@ -519,22 +566,20 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
     paused = p; pauseBtn.classList.toggle('paused', p);
     pauseBtn.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow');
     if (!p) t0 = performance.now() - elapsed;
-    paint(p ? elapsed / DUR || 1 : elapsed / DUR);
+    paint(p ? (elapsed / DUR || 1) : elapsed / DUR);
   };
-  const tick = now => {
-    if (!paused && !document.hidden) {
-      elapsed = now - t0;
-      if (elapsed >= DUR) show(i + 1); else paint(elapsed / DUR);
-    }
-    requestAnimationFrame(tick);
+  const loop = now => {
+    if (!paused && !held && !document.hidden) { elapsed = now - t0; if (elapsed >= DUR) show(i + 1); else paint(elapsed / DUR); }
+    requestAnimationFrame(loop);
   };
   ticks.forEach((t, n) => t.addEventListener('click', () => show(n)));
   pauseBtn.addEventListener('click', () => setPaused(!paused));
-  hero.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
+  hero.addEventListener('focusin', () => { held = true; });            // hold the slide while someone types
+  hero.addEventListener('focusout', () => { held = false; t0 = performance.now() - elapsed; });
   let sx = null;
-  hero.addEventListener('pointerdown', e => { sx = e.clientX; });
-  hero.addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX - sx) > 50) show(i + (e.clientX < sx ? 1 : -1)); sx = null; });
-  show(0); setPaused(reduce); requestAnimationFrame(tick);
+  slidesEl.addEventListener('pointerdown', e => { sx = e.clientX; });
+  slidesEl.addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX - sx) > 50) show(i + (e.clientX < sx ? 1 : -1)); sx = null; });
+  show(0); setPaused(reduce); requestAnimationFrame(loop);
 
   /* ---------- reveals ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
@@ -546,7 +591,7 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   let queued = false;
   const update = () => {
     queued = false;
-    const r = band.getBoundingClientRect(), vh = innerHeight;   // read, then write
+    const r = band.getBoundingClientRect(), vh = innerHeight;
     const p = clamp(1 - r.top / vh, 0, 1), e = 1 - Math.pow(1 - p, 3);
     const m = innerWidth <= 760 ? 20 : 40;
     frame.style.setProperty('--ix', (m * (1 - e)) + 'px');
@@ -561,52 +606,76 @@ footer{background:var(--moss);color:var(--white);padding:96px var(--m) 0;overflo
   const fitWm = () => {
     const target = wm.parentElement.clientWidth - 2 * parseFloat(getComputedStyle(wm.parentElement).paddingLeft);
     const cur = parseFloat(getComputedStyle(wm).fontSize), width = wm.getBoundingClientRect().width;
-    if (!width || !target) return;                       // not laid out (e.g. mid-resize): keep the last size
+    if (!width || !target) return;
     wm.style.fontSize = (cur * target / width).toFixed(2) + 'px';
   };
-  fitWm(); document.fonts.load('900 100px CD').then(fitWm, fitWm); document.fonts.addEventListener('loadingdone', fitWm); addEventListener('resize', fitWm);
+  fitWm(); document.fonts.load('500 100px CD').then(fitWm, fitWm); document.fonts.addEventListener('loadingdone', fitWm); addEventListener('resize', fitWm);
 
-  /* ---------- part-number check (demo) ---------- */
-  const ask = $('#ask'), pn = $('#pn'), msg = $('#pn-msg'), result = $('#result'), rh = $('#r-h'), rp = $('#r-p');
-  const qf = $('#qf'), done = $('#done');
-  // Platform notes come from Cadorath's published repair lists and approvals. No part numbers are invented.
-  const PLATFORMS = [
-    [/\bh1(35|45)\b|ec1(35|45)/i, 'Airbus H135 and H145', 'Single part repair approved in June 2026. These parts are not in the online tables yet, so the team checks each number by hand.'],
-    [/\bh125\b|\bas ?35[05]\b|\bh130\b|\bec130\b/i, 'Airbus H125, AS350, AS355 and H130', 'On our Airbus Helicopters repair list, under our D-Level repair centre approval.'],
-    [/\bh155\b|\bas ?365\b|\bhh-?65\b|\bas ?565\b/i, 'Airbus H155 and AS365 family', 'The largest group on our Airbus Helicopters repair list.'],
-    [/\bbell\b|\b(204|205|206|212|214b?|407|412|427)\b|oh-?58/i, 'Bell', 'Repairs approved by Transport Canada, the FAA and EASA.'],
-    [/\bm ?250\b|\brr ?300\b|\b250-c\d+|\bc(18|20|28|30|40|47)\b/i, 'Rolls-Royce M250 and RR300', 'Overhaul, exchange, rental and test as a Rolls-Royce AMROC, in Winnipeg and Lafayette.'],
-    [/\bt ?56\b/i, 'Rolls-Royce T56', 'Repairs as a Rolls-Royce authorized repair facility.'],
+  /* ---------- part-number check (sample data, honest matching) ---------- */
+  // Part-number prefixes and platform names only. Every hit names the approval behind it. Nothing else is claimed.
+  const PARTS = [   // tested on the normalised number
+    [/^350A\d/, 'Airbus Helicopters part', 'The 350A prefix is an Airbus Helicopters number. We repair Airbus parts as an Airbus Helicopters D-Level approved repair centre.'],
+    [/^(204|205|206|212|214|407|412|427)-\d{3}-\d{3}/, 'Bell part', 'This matches the Bell part number format. Our Bell repairs are approved by Transport Canada, the FAA and EASA.'],
+    [/^250-C\d/, 'Rolls-Royce 250 series', 'We overhaul, exchange, rent and test M250 and RR300 engines as a Rolls-Royce AMROC, in Winnipeg and Lafayette.'],
+  ];
+  const NAMES = [   // tested on what was typed
+    [/\b(h|ec)1(35|45)\b/i, 'Airbus H135 and H145', 'Single part repair approved under our Airbus Helicopters D-Level agreement in June 2026.'],
+    [/\bh125\b|\bas ?35[05]\b|\bh130\b|\bec130\b|\bh155\b|\bas ?365\b|\bec120\b/i, 'Airbus Helicopters', 'Repaired as an Airbus Helicopters D-Level approved repair centre.'],
+    [/\bbell\b|\boh-?58\b/i, 'Bell', 'Our Bell repairs are approved by Transport Canada, the FAA and EASA.'],
+    [/\bm ?250\b|\brr ?300\b/i, 'Rolls-Royce M250 and RR300', 'Overhaul, exchange, rental and test as a Rolls-Royce AMROC, in Winnipeg and Lafayette.'],
+    [/\bt ?56\b/i, 'Rolls-Royce T56', 'Repaired as a Rolls-Royce authorized repair facility and FIRST Network member.'],
     [/\bt ?5[35]\b|\blts ?101\b/i, 'Honeywell T53, T55 and LTS101', 'Covered by our Honeywell approvals.'],
   ];
-  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  let query = '';
-  ask.addEventListener('submit', e => {
+  const normalise = q => q.toUpperCase().replace(/\s+/g, '').replace(/O/g, '0').replace(/[IL]/g, '1');
+  const lookup = q => {
+    const n = normalise(q);
+    const p = PARTS.find(([re]) => re.test(n));
+    if (p) return { platform: p[1], text: p[2], read: n !== q.toUpperCase().replace(/\s+/g, '') ? n : '' };
+    const m = NAMES.find(([re]) => re.test(q));
+    if (m) return { platform: m[1], text: m[2], read: '' };
+    return null;
+  };
+
+  const check = $('#check'), pn = $('#pn'), msg = $('#pn-msg'), field = $('.field'), result = $('#result');
+  let last = { q: '', platform: '' };
+  const fail = t => { msg.textContent = t; field.classList.add('bad'); pn.setAttribute('aria-invalid', 'true'); result.hidden = true; pn.focus(); };
+  check.addEventListener('submit', e => {
     e.preventDefault();
-    query = pn.value.trim();
-    const bad = !query ? 'Enter a part number or an aircraft model.' : query.length < 3 ? 'That looks too short. Check the number on the tag.' : '';
-    msg.textContent = bad; ask.classList.toggle('bad', !!bad); pn.setAttribute('aria-invalid', !!bad);
-    if (bad) { result.classList.remove('show'); pn.focus(); return; }
-    const hit = PLATFORMS.find(([re]) => re.test(query));
-    rh.innerHTML = hit ? `${esc(hit[1])}` : `<span class="q">${esc(query)}</span>`;
-    rp.textContent = hit ? hit[2] : 'On the live site this number is checked against the Airbus, Bell and Rolls-Royce repair lists. If it is not listed, send it anyway: new repairs can be designed under DAO 15-C-01.';
-    qf.classList.remove('show'); done.classList.remove('show'); $('#r-quote').hidden = false;
-    result.classList.remove('show'); void result.offsetWidth; result.classList.add('show');
+    const q = pn.value.trim();
+    if (!q) return fail('Enter a part number or an aircraft model.');
+    if (q.replace(/[^a-z0-9]/gi, '').length < 3) return fail('That looks too short. Check the number on the tag.');
+    msg.textContent = ''; field.classList.remove('bad'); pn.setAttribute('aria-invalid', 'false');
+    const hit = lookup(q);
+    const read = $('#r-read');
+    if (hit && hit.read) { read.hidden = false; read.innerHTML = `Read as <span class="pn">${esc(hit.read)}</span> (O taken as 0, I and l as 1).`; } else read.hidden = true;
+    $('#r-h').innerHTML = hit ? esc(hit.platform) : 'Not in this sample.';
+    $('#r-p').innerHTML = hit ? esc(hit.text) : `Send it anyway. <span class="pn">${esc(q)}</span> may still be repairable: new repairs can be designed and approved here under DAO 15-C-01.`;
+    $('#r-quote').innerHTML = hit ? 'Request a quote <span class="arrow" aria-hidden="true">→</span>' : 'Send it anyway <span class="arrow" aria-hidden="true">→</span>';
+    last = { q: hit && hit.read ? hit.read : q, platform: hit ? hit.platform : '' };
+    held = true; hero.classList.add('asked');
+    result.hidden = false; result.classList.remove('show'); void result.offsetWidth; result.classList.add('show');
   });
-  pn.addEventListener('input', () => { if (ask.classList.contains('bad')) { msg.textContent = ''; ask.classList.remove('bad'); pn.setAttribute('aria-invalid', false); } });
-  $('#r-quote').addEventListener('click', () => { qf.classList.add('show'); $('#r-quote').hidden = true; $('#qn').focus(); });
-  $('#r-reset').addEventListener('click', () => { result.classList.remove('show'); pn.value = ''; pn.focus(); });
+  pn.addEventListener('input', () => { if (field.classList.contains('bad')) { msg.textContent = ''; field.classList.remove('bad'); pn.setAttribute('aria-invalid', 'false'); } });
+  $('#r-reset').addEventListener('click', () => { result.hidden = true; hero.classList.remove('asked'); pn.value = ''; held = false; pn.focus(); });
+
+  /* ---------- quote form ---------- */
+  const qf = $('#qf'), done = $('#done');
+  const toQuote = () => { if (last.q) $('#qp').value = last.q; setTimeout(() => { const f = ['#qp', '#qn', '#qe'].map(s => $(s)).find(x => !x.value); (f || $('#qm')).focus({ preventScroll: true }); }, reduce ? 0 : 500); };
+  $('#r-quote').addEventListener('click', toQuote);
+  $$('[data-quote]').forEach(a => a.addEventListener('click', toQuote));
   qf.addEventListener('submit', e => {
     e.preventDefault();
-    const n = $('#qn'), m = $('#qe');
+    const p = $('#qp'), n = $('#qn'), m = $('#qe');
+    const ep = p.value.trim() ? '' : 'Add a part number or an aircraft model.';
     const en = n.value.trim() ? '' : 'Add your name.';
     const em = !m.value.trim() ? 'Add a work email.' : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.trim()) ? '' : 'That email address looks incomplete.';
-    $('#qn-e').textContent = en; $('#qe-e').textContent = em;
-    n.setAttribute('aria-invalid', !!en); m.setAttribute('aria-invalid', !!em);
-    if (en || em) { (en ? n : m).focus(); return; }
-    qf.classList.remove('show');
-    done.innerHTML = `Demo only: nothing was sent. On the live site this request reaches the Cadorath team with <span class="q">${esc(query)}</span> filled in.`;
-    done.classList.add('show');
+    [[p, ep, '#qp-e'], [n, en, '#qn-e'], [m, em, '#qe-e']].forEach(([el, err, id]) => { $(id).textContent = err; el.setAttribute('aria-invalid', !!err); });
+    const firstBad = [[p, ep], [n, en], [m, em]].find(([, err]) => err);
+    if (firstBad) { firstBad[0].focus(); return; }
+    const hit = lookup(p.value.trim());
+    const part = hit && hit.read ? hit.read : p.value.trim();
+    $('#done-p').innerHTML = `Part <span class="pn">${esc(part)}</span>${hit ? `, ${esc(hit.platform)}` : ', platform to be confirmed by the team'}. Reply to ${esc(m.value.trim())}.`;
+    qf.hidden = true; done.hidden = false; done.focus();
   });
 })();
 </script>

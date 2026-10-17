@@ -6,13 +6,14 @@
 <meta name="viewport" content="width=1920">
 <title>Cadorath brand sheet: Back in service</title>
 <style>
-@font-face{font-family:"CD";src:local("SF Pro Display Heavy"),local("SFProDisplay-Heavy");font-weight:800}
-@font-face{font-family:"CD";src:local("SF Pro Display Black"),local("SFProDisplay-Black");font-weight:900}
+@font-face{font-family:"CD";src:local("SF Pro Display Regular"),local("SFProDisplay-Regular");font-weight:400}
+@font-face{font-family:"CD";src:local("SF Pro Display Medium"),local("SFProDisplay-Medium");font-weight:500}
+@font-face{font-family:"CM";src:local("SF Mono Regular"),local("SFMono-Regular");font-weight:400}
 @font-face{font-family:"CT";src:local("SF Pro Text"),local("SFProText-Regular");font-weight:400}
 @font-face{font-family:"Manrope";src:url(fonts/Manrope-latin.woff2) format("woff2");font-weight:200 800}
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1920px;height:1080px;overflow:hidden;font-family:"CT","SF Pro Text",-apple-system,"Manrope",sans-serif;color:#06101F;background:#fff;-webkit-font-smoothing:antialiased}
-.d{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:800;letter-spacing:-0.022em;line-height:.98}
+.d{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:400;letter-spacing:-0.025em;line-height:1}
 .lock b,.lock-white b,.sw b{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif}
 .sheet{display:grid;grid-template-columns:600px minmax(0,1fr) 520px;grid-template-rows:520px 1fr;height:1080px}
 h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
@@ -23,11 +24,11 @@ h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
 .logo h2{color:rgba(255,255,255,.62)}
 .lock{display:flex;align-items:center;gap:22px}
 .lock svg{width:120px;height:62px}
-.lock b{font-weight:900;font-size:58px;letter-spacing:.005em}
-.big{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:900;font-size:86px;letter-spacing:-0.012em;line-height:.8;color:#6CB1C8;white-space:nowrap}
+.lock b{font-weight:500;font-size:56px;letter-spacing:.06em}
+.big{font-family:"CD","SF Pro Display",-apple-system,"Manrope",sans-serif;font-weight:500;font-size:104px;letter-spacing:-0.02em;line-height:.8;color:#6CB1C8;white-space:nowrap}
 .lock-white{background:#fff;color:#06101F;padding:40px;display:flex;align-items:center;gap:18px}
 .lock-white svg{width:86px;height:44px}
-.lock-white b{font-weight:900;font-size:42px;letter-spacing:.005em}
+.lock-white b{font-weight:500;font-size:40px;letter-spacing:.06em}
 .logo .note{color:rgba(255,255,255,.72);max-width:440px}
 
 /* type */
@@ -53,7 +54,7 @@ h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
 .bottom{grid-column:2;display:flex;flex-direction:column;gap:32px;padding:40px 56px 56px}
 .sw{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;height:200px}
 .sw div{padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:14px;line-height:1.35}
-.sw b{font-weight:900;font-size:16px;letter-spacing:-0.01em;display:block}
+.sw b{font-weight:500;font-size:16px;letter-spacing:-0.01em;display:block}
 .comp{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;align-items:start}
 .comp h2{grid-column:1 / -1;margin-bottom:0}
 .comp .stack{display:flex;flex-direction:column;gap:12px}
@@ -85,16 +86,16 @@ h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
       <div class="lock"><svg fill="#fff"><use href="#mark"/></svg><b>CADORATH</b></div>
     </div>
     <div class="lock-white"><svg><use href="#markc"/></svg><b>CADORATH</b></div>
-    <p class="note">The crescent mark stays exactly as drawn, in its three logo colours or solid white. The wordmark is set in SF Pro Display Black with the R and A opened by hand. MoreUPTime leaves the lockup (Cadorath to confirm).</p>
-    <p class="big" aria-label="Cadorath">CADO<span style="margin-right:.035em">R</span>ATH</p>
+    <p class="note">The crescent mark stays exactly as drawn, in its three logo colours or solid white. The wordmark is set in SF Pro Display Medium, tracked open in the lockup, with the R-A and A-T pairs kerned by hand at full width. MoreUPTime leaves the lockup (Cadorath to confirm).</p>
+    <p class="big" aria-label="Cadorath">CADO<span style="margin-right:.02em">R</span><span style="margin-right:-.01em">A</span>TH</p>
   </section>
 
   <section class="type">
-    <h2>Type: SF Pro Display Heavy and Black, SF Pro Text. Manrope as the open fallback</h2>
+    <h2>Type: SF Pro Display Medium and Regular, SF Pro Text, SF Mono for part numbers. Manrope as the open fallback</h2>
     <p class="spec d">Write the repair.</p>
     <div class="row">
       <p class="body">Since 2015 we have held Transport Canada design delegation DAO 15-C-01, so a new repair can be designed and approved here.</p>
-      <p class="meta"><strong>Display, SF Pro Display Heavy 800.</strong> 64 px on the hero, 72 px statements, 120 px audience rows. Tracking minus 2.2 percent, leading 0.98. Black 900 for the wordmark only.<br><strong>Body, SF Pro Text Regular 400.</strong> 18 to 20 px. Manrope is self-hosted for non-Apple viewers.</p>
+      <p class="meta"><strong>Display, SF Pro Display.</strong> Medium 500 for the hero, 66 px. Regular 400 for statements and rows, 72 to 84 px. Tracking minus 2.5 percent. <strong>Body, SF Pro Text 400.</strong> 17 to 20 px. <strong>Part numbers, SF Mono</strong> with a slashed zero. Manrope is self-hosted for non-Apple viewers.</p>
     </div>
   </section>
 
@@ -126,8 +127,8 @@ h2{font-size:15px;font-weight:400;color:#5A6675;margin-bottom:22px}
     </div>
     <div class="comp">
       <h2>Components</h2>
-      <div class="stack"><div class="field"><span class="ask"><span class="ph">Part number or model</span><span class="pill dk">Check →</span></span></div>
-      <div class="capr"><span>Airbus H125. Airbus Helicopters D-Level repair centre.</span><span class="tk"><i class="f"></i><i class="h"></i><i></i></span></div></div><div class="arow"><div><h3 class="d">Engines</h3><p>M250 and RR300 overhaul, exchange and test.</p></div><svg viewBox="0 0 96 40"><path d="M0 20h92M74 2l18 18-18 18" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>
+      <div class="stack"><div class="field"><span class="ask"><span class="ph" style="font-family:CM,ui-monospace,monospace">e.g. 350A331090</span><span class="pill dk">Check →</span></span></div>
+      <div class="capr"><span>Transport Canada AMO 86-91, DAO 15-C-01 / FAA 04YR302Y / EASA 145.7017</span><span class="tk"><i class="f"></i><i class="h"></i><i></i></span></div></div><div class="arow"><div><h3 class="d">Engines</h3><p>M250 and RR300 overhaul, exchange and test.</p></div><svg viewBox="0 0 96 40"><path d="M0 20h92M74 2l18 18-18 18" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>
     </div>
   </section>
 </div>
