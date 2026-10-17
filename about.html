@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>About these concepts, Cadorath</title>
+<style>
+  :root { --text: #f2f2f0; --body: #c6c9ce; --muted: #8f939b; --line: rgba(255, 255, 255, 0.12); }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px 16px 64px; background: #0b0c0e; color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 640px; margin: 0 auto; }
+  .back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 48px; padding: 0 16px; height: 40px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.06); color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600; }
+  .back:hover { background: rgba(255, 255, 255, 0.14); }
+  .back:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  h1 { font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; }
+  .lede { font-size: 20px; line-height: 1.45; color: var(--text); margin: 0 0 28px; }
+  p { color: var(--body); margin: 0 0 18px; }
+  h2 { font-size: 13px; font-weight: 600; color: var(--muted); margin: 44px 0 14px; padding-top: 24px; border-top: 1px solid var(--line); }
+  ul { margin: 0; padding: 0; list-style: none; }
+  li { color: var(--body); padding-left: 18px; position: relative; margin: 0 0 10px; }
+  li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .small li { font-size: 14px; }
+  a { color: var(--text); }
+  .by { display: flex; align-items: center; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .by img { width: 30px; height: 30px; display: block; }
+  .by b { display: block; font-size: 14px; font-weight: 600; }
+  .by span { display: block; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" id="back" href="./">&larr; Back to the concepts</a>
+
+  <h1>About these concepts</h1>
+  <p class="lede">Three early directions for a new Cadorath homepage. They show what's possible. They don't lock anything in.</p>
+
+  <p>Each one tells the same story from a different angle: Cadorath brings back parts that would otherwise be scrapped, and holds the approvals to prove it.</p>
+  <p>The finished site comes out of a full strategy and creative deep dive with your team. That's where we agree who the site is for, what it needs to say first, and how to show your real work. The final design will be sharper, more specific to Cadorath, and built on what we learn together.</p>
+
+  <h2>What's real and what's placeholder</h2>
+  <ul>
+    <li>Approvals, certificate numbers and capabilities come from Cadorath's own published information.</li>
+    <li>Part searches and quote forms run on sample data. Nothing is sent.</li>
+    <li>Some photography is licensed stand-in imagery. Real photos of your people and shop floor replace it.</li>
+  </ul>
+
+  <h2>Credits</h2>
+  <ul class="small">
+    <li>Concept 2 hero: photo by Lennart Brügge, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:RECCO_SAR_helicopter_detector.jpg">Wikimedia Commons</a>, modified (cropped, retouched, colour graded).</li>
+    <li>Other stand-in images: Unsplash, Pexels and public domain.</li>
+    <li>Type: Manrope, with your device's system font.</li>
+  </ul>
+
+  <div class="by"><img src="img/mode40-mark-white.svg" alt=""><div><b>Built by mode40</b><span>Strategy &amp; Creative</span></div></div>
+</main>
+<script>
+  // return to the concept the viewer came from
+  if (/^#concept-[123]$/.test(location.hash)) document.getElementById('back').href = './' + location.hash;
+</script>
+</body>
+</html>
